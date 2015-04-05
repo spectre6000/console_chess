@@ -6,7 +6,7 @@ module ConsoleChess
       fake_stdout = double("$STDOUT", :puts => true)
       printer = Printer.new(fake_stdout)
       
-      printer.say_hello
+      printer.print("Hello")
 
       expect(fake_stdout).to have_received(:puts).with("Hello")
     end

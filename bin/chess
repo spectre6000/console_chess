@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "console_chess"
+
+ConsoleChess::Printer.new.say_hello

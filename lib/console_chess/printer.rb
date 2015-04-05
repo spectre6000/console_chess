@@ -6,8 +6,8 @@ module ConsoleChess
       @out = out
     end
 
-    def say_hello
-      @out.puts "Hello"
+    def print(output)
+      @out.puts output
     end
   end
 end

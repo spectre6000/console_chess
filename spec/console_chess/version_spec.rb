@@ -1,4 +1,4 @@
-require_relative "../../lib/console_chess"
+require "spec_helper"
 
 module ConsoleChess
   describe VERSION do

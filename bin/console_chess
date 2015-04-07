@@ -2,4 +2,4 @@
 
 require "console_chess"
 
-ConsoleChess::Printer.new.say_hello
+ConsoleChess::Session.new.play

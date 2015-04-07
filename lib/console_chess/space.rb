@@ -1,5 +1,3 @@
-
-
 module ConsoleChess
   class Space
 
@@ -9,8 +7,8 @@ module ConsoleChess
       @color = color
       @column = column
       @token = "_"
-      set_column
       set_token
+      set_column
       @row = row
       @position = "#{@row}#{@column}"
     end

@@ -17,14 +17,14 @@ module ConsoleChess
     def new_board
       primary_pieces = [[Rook, "a"], [Knight, "b"], [Bishop, "c"], [Queen, "d"], [King, "e"], [Bishop, "f"], [Knight, "g"], [Rook, "h"]]
 
-      row_8 = primary_pieces.map { |piece, column| piece.new("black", column)}
-      row_7 = (1..8).map { |pawn| ConsoleChess::Pawn.new("black", pawn)}
+      row_8 = primary_pieces.map { |piece, column| piece.new(column, "black")}
+      row_7 = (1..8).map { |pawn| ConsoleChess::Pawn.new(pawn, "black")}
       row_6 = (1..8).map { |space| ConsoleChess::Space.new("6", space)}
       row_5 = (1..8).map { |space| ConsoleChess::Space.new("5", space)}
       row_4 = (1..8).map { |space| ConsoleChess::Space.new("4", space)}
       row_3 = (1..8).map { |space| ConsoleChess::Space.new("3", space)}
-      row_2 = (1..8).map { |pawn| ConsoleChess::Pawn.new("white", pawn)}
-      row_1 = primary_pieces.map { |piece, column| piece.new("white", column)}
+      row_2 = (1..8).map { |pawn| ConsoleChess::Pawn.new(pawn, "white")}
+      row_1 = primary_pieces.map { |piece, column| piece.new(column, "white")}
       
       @game_board = [row_8, row_7, row_6, row_5, row_4, row_3, row_2, row_1].flatten
     end

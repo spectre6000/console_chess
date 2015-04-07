@@ -2,8 +2,8 @@ require "spec_helper.rb"
 
 module ConsoleChess
   describe King do
-      let (:bking) {King.new("black", "e")}
-      let (:wking) {King.new("white", "e")}
+      let (:bking) {King.new("e", "black")}
+      let (:wking) {King.new("e", "white")}
 
     it "initializes with the correct 'color'" do
       expect(bking.token).to eql("k")

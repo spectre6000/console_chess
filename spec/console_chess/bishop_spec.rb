@@ -2,8 +2,8 @@ require "spec_helper"
 
 module ConsoleChess
   describe Bishop do
-    let (:bbishop) {Bishop.new("black", "c")}
-    let (:wbishop) {Bishop.new("white", "f")}
+    let (:bbishop) {Bishop.new("c", "black")}
+    let (:wbishop) {Bishop.new("f", "white")}
 
     it "initializes with the correct 'color'" do
       expect(bbishop.token).to eql("b")

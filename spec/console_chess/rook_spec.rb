@@ -2,8 +2,8 @@ require "spec_helper"
 
 module ConsoleChess
   describe Rook do
-    let (:brook) {Rook.new("black", "a")}
-    let (:wrook) {Rook.new("white", "h")}
+    let (:brook) {Rook.new("a", "black")}
+    let (:wrook) {Rook.new("h", "white")}
 
     it "initializes with the correct 'color'" do
       expect(brook.token).to eql("r")

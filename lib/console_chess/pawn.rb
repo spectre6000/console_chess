@@ -5,12 +5,12 @@ module ConsoleChess
 
     attr_reader :token, :position
 
-    def initialize(color, column)
+    def initialize(column, color)
       @color = color
       @column = column
       @token = "p"
-      set_column
       set_token
+      set_column
       set_row
       @position = "#{@column}#{@row}"
     end

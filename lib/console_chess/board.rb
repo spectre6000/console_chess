@@ -1,5 +1,8 @@
 module ConsoleChess
   class Board
+
+    attr_reader :game_board
+
     def initialize(printer)
       @printer = printer
       new_board

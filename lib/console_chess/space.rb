@@ -1,7 +1,9 @@
+
+
 module ConsoleChess
   class Space
 
-    attr_reader :token, :position
+    attr_reader :token, :position, :call_sign
 
     def initialize(row, column, color = "empty")
       @color = color
@@ -10,7 +12,8 @@ module ConsoleChess
       set_token
       set_column
       @row = row
-      @position = "#{@row}#{@column}"
+      @position = "#{@column}#{@row}"
+      @call_sign = "#{@token}#{@position}"      
     end
 
 

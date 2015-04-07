@@ -2,12 +2,18 @@ require "spec_helper"
 
 module ConsoleChess
   describe Queen do
-    it "initializes with the correct 'color'" do
-      bqueen = Queen.new("black")
-      wqueen = Queen.new("white")
+    let (:bqueen) {Queen.new("black", "d")}
+    let (:wqueen) {Queen.new("white", "d")}
 
+
+    it "initializes with the correct 'color'" do
       expect(bqueen.token).to eql("q")
       expect(wqueen.token).to eql("Q")
+    end
+
+    it "initializes with the correct position" do
+      expect(bqueen.position).to eql("d8")
+      expect(wqueen.position).to eql("d1")
     end
   end
 end

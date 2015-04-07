@@ -9,7 +9,7 @@ module ConsoleChess
       @game_board
     end
 
-    def continue(state=true)
+    def continue?(state=true)
       state
     end
 

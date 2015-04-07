@@ -10,7 +10,9 @@ module ConsoleChess
       @printer.print("Welcome to ConsoleChess!")
       while @board.continue?
         # print the board
-        # prompot user for move
+        @board.print_board
+        # prompt user for move
+        @printer.print("White's move:")
         # board.move("pc1")
         # check board for winner, change continue if so
       end

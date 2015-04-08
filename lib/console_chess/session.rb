@@ -29,6 +29,7 @@ module ConsoleChess
 
     def get_move(turn)
       @printer.print("#{@turn}'s turn:")
+      move = @reader.read
     end
 
   end

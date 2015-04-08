@@ -6,7 +6,7 @@ module ConsoleChess
     let (:board) {Board.new(fake_printer)}
 
     it "keeps the game going" do
-      expect(board.continue).to eql(true)
+      expect(board.winner).to eql(true)
     end
 
     it "prints the board" do
@@ -80,6 +80,16 @@ module ConsoleChess
       expect(board.game_board[61].call_sign).to eq("Bf1")
       expect(board.game_board[62].call_sign).to eq("Ng1")
       expect(board.game_board[63].call_sign).to eq("Rh1")
+    end
+
+    it "takes turns" do
+      expect(board.turn).to eql("White")
+      board.take_turn
+      expect(board.turn).to eql("Black")
+      board.take_turn
+      expect(board.turn).to eql("White")
+      board.take_turn
+      expect(board.turn).to eql("Black")
     end
   end
 end

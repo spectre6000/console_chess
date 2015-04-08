@@ -1,16 +1,14 @@
 module ConsoleChess
   class Board
 
-    attr_reader :game_board
+    attr_reader :game_board, :winner, :turn
 
     def initialize(printer)
       @printer = printer
       new_board
       @game_board
-    end
-
-    def continue?(state=true)
-      state
+      @winner = true
+      @turn = "White"
     end
 
     def print_board
@@ -30,6 +28,12 @@ module ConsoleChess
       row_1 = primary_pieces.map { |piece, column| piece.new(column, "white")}
       
       @game_board = [row_8, row_7, row_6, row_5, row_4, row_3, row_2, row_1].flatten
+    end
+
+    def take_turn
+      new_turn = ["Black", "White"]
+      new_turn.delete(@turn)
+      @turn = new_turn[0]
     end
   end
 end

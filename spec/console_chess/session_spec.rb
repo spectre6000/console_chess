@@ -10,7 +10,6 @@ module ConsoleChess
 
     it "greets user" do
       allow(fake_board).to receive(:winner).and_return(true)
-      allow(fake_reader).to receive(:read)
       session.play
 
       expect(fake_printer).to have_received(:print).with("Welcome to ConsoleChess!")
@@ -18,22 +17,11 @@ module ConsoleChess
 
     it "prompts the current user for a move" do
       allow(fake_printer).to receive(:print).with("Welcome to ConsoleChess!")
-      allow(fake_reader).to receive(:read)
       allow(fake_board).to receive(:winner).and_return(true)
       session.play
 
       expect(fake_printer).to have_received(:print).with("White's turn:")
     end 
-
-    it "receives the move from the user" do
-      allow(fake_printer).to receive(:print).with("Welcome to ConsoleChess!")
-      allow(fake_printer).to receive(:print).with("White's turn:")
-      allow(fake_reader).to receive(:read)
-      allow(fake_board).to receive(:winner).and_return(true)
-      session.play
-
-      expect(fake_reader).to have_received(:read)
-    end
 
     it "takes turns" do
       expect(session.turn).to eql("White")
@@ -43,6 +31,11 @@ module ConsoleChess
       expect(session.turn).to eql("White")
       session.take_turn
       expect(session.turn).to eql("Black")
+    end
+
+    it "prompts a user for a move" do
+      session.get_move("White")
+      expect(fake_printer).to have_received(:print).with("White's turn:")
     end
 
   end

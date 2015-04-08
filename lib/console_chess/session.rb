@@ -13,8 +13,7 @@ module ConsoleChess
     def play
       @printer.print("Welcome to ConsoleChess!")
       loop do
-        @printer.print("#{@turn}'s turn:")
-        move = @reader.read
+        get_move(@turn)
         if @board.winner == true
           break
         end
@@ -26,6 +25,10 @@ module ConsoleChess
       new_turn = ["Black", "White"]
       new_turn.delete(@turn)
       @turn = new_turn[0]
+    end
+
+    def get_move(turn)
+      @printer.print("#{@turn}'s turn:")
     end
 
   end

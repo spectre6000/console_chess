@@ -82,14 +82,5 @@ module ConsoleChess
       expect(board.game_board[63].call_sign).to eq("Rh1")
     end
 
-    it "takes turns" do
-      expect(board.turn).to eql("White")
-      board.take_turn
-      expect(board.turn).to eql("Black")
-      board.take_turn
-      expect(board.turn).to eql("White")
-      board.take_turn
-      expect(board.turn).to eql("Black")
-    end
   end
 end

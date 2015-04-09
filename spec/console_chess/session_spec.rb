@@ -10,7 +10,7 @@ module ConsoleChess
 
     it "greets user" do
       allow(fake_board).to receive(:winner).and_return(true)
-      allow(fake_reader).to receive(:read)
+      allow(fake_reader).to receive(:read).and_return("Pa1")
       session.play
 
       expect(fake_printer).to have_received(:print).with("Welcome to ConsoleChess!")
@@ -18,7 +18,7 @@ module ConsoleChess
 
     it "prompts the current user for a move" do
       allow(fake_printer).to receive(:print).with("Welcome to ConsoleChess!")
-      allow(fake_reader).to receive(:read)
+      allow(fake_reader).to receive(:read).and_return("Pa1")
       allow(fake_board).to receive(:winner).and_return(true)
       session.play
 
@@ -36,7 +36,7 @@ module ConsoleChess
     end
 
     it "prompts a user for a move" do
-      allow(fake_reader).to receive(:read)
+      allow(fake_reader).to receive(:read).and_return("Pa1")
       session.get_move("White")
 
       expect(fake_printer).to have_received(:print).with("White's turn:")
@@ -44,12 +44,19 @@ module ConsoleChess
 
     it "gets a move from the user" do
       allow(fake_printer).to receive(:print).with("White's turn:")
+      allow(fake_reader).to receive(:read).and_return("Pa1")
       session.get_move("White")
 
       expect(fake_reader).to have_received(:read)
     end
 
-    
+    it "rejects an invalid move" do
+      allow(fake_printer).to receive(:print).with("White's turn:")
+      allow(fake_reader).to receive(:read).and_return("blurple", "Pa1")
+      session.get_move("White")
+
+      expect(fake_printer).to have_received(:print).with("Not a valid move")
+    end
 
   end
 end

@@ -29,7 +29,14 @@ module ConsoleChess
 
     def get_move(turn)
       @printer.print("#{@turn}'s turn:")
-      move = @reader.read
+      loop do
+        move = @reader.read
+        if move !~ /[PpRrNnBbQqKk][a-h]{1,2}[1-8]/
+          @printer.print("Not a valid move")
+        else
+          break
+        end
+      end
     end
 
   end

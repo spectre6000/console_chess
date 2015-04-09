@@ -15,17 +15,13 @@ module ConsoleChess
       loop do
         @board.print_board
         get_move(@turn)
-        if @board.winner == true
-          break
-        end
+        break if @board.winner == true
         take_turn
       end
     end
 
     def take_turn
-      new_turn = ["Black", "White"]
-      new_turn.delete(@turn)
-      @turn = new_turn[0]
+      @turn = ["Black", "White"].keep_if{|x| x != @turn}[0]
     end
 
     def get_move(turn)

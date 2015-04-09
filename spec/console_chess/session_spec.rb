@@ -9,6 +9,7 @@ module ConsoleChess
     let (:session) {Session.new(fake_printer, fake_reader, fake_board)}
 
     it "greets user" do
+      allow(fake_board).to receive(:print_board)
       allow(fake_board).to receive(:winner).and_return(true)
       allow(fake_reader).to receive(:read).and_return("Pa1")
       session.play
@@ -18,6 +19,7 @@ module ConsoleChess
 
     it "prompts the current user for a move" do
       allow(fake_printer).to receive(:print).with("Welcome to ConsoleChess!")
+      allow(fake_board).to receive(:print_board)
       allow(fake_reader).to receive(:read).and_return("Pa1")
       allow(fake_board).to receive(:winner).and_return(true)
       session.play
@@ -56,6 +58,13 @@ module ConsoleChess
       session.get_move("White")
 
       expect(fake_printer).to have_received(:print).with("Not a valid move")
+    end
+
+    it "returns the user-entered move" do
+      allow(fake_printer).to receive(:print).with("White's turn:")
+      allow(fake_reader).to receive(:read).and_return("Pa1")
+
+      expect(session.get_move("White")).to eq("Pa1")
     end
 
   end

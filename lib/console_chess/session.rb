@@ -13,6 +13,7 @@ module ConsoleChess
     def play
       @printer.print("Welcome to ConsoleChess!")
       loop do
+        @board.print_board
         get_move(@turn)
         if @board.winner == true
           break
@@ -33,8 +34,9 @@ module ConsoleChess
         move = @reader.read
         if move !~ /[PpRrNnBbQqKk][a-h]{1,2}[1-8]/
           @printer.print("Not a valid move")
+        # add elsif to verify if the move is legal for the specific piece in question
         else
-          break
+          return move
         end
       end
     end

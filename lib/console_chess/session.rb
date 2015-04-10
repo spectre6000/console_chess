@@ -7,34 +7,55 @@ module ConsoleChess
       @printer = printer
       @reader = reader
       @board = board
-      @turn = "White"
+      # @round = 1
+      @turn = "Black"
     end
 
     def play
-      @printer.print("Welcome to ConsoleChess!")
+      welcome
       loop do
-        @board.print_board
-        get_move(@turn)
-        break if @board.winner == true
+        print_board
+        get_move(take_turn)
+        break if @board.winner?
         take_turn
       end
     end
 
-    def take_turn
-      @turn = ["Black", "White"].keep_if{|x| x != @turn}[0]
+    def welcome
+      @printer.print("Welcome to ConsoleChess!")
+    end
+
+    def print_board
+      @printer.print(@board.print_board)
     end
 
     def get_move(turn)
-      @printer.print("#{@turn}'s turn:")
+      print_turn
       loop do
         move = @reader.read
-        if move !~ /[PpRrNnBbQqKk][a-h]{1,2}[1-8]/
-          @printer.print("Not a valid move")
+        if valid_move_format?(move)
+          invalid_move
         # add elsif to verify if the move is legal for the specific piece in question
         else
           return move
         end
       end
+    end
+
+    def print_turn
+      @printer.print("#{take_turn}'s turn:")
+    end
+
+    def valid_move_format?(move)
+      move !~ /[PpRrNnBbQqKk][a-h]{1,2}[1-8]/
+    end
+
+    def take_turn
+      @turn == "White" ? @turn = "Black" : @turn = "White"
+    end
+
+    def invalid_move
+      @printer.print("Not a valid move")
     end
 
   end

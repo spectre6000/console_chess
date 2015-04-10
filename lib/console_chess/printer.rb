@@ -1,6 +1,6 @@
 module ConsoleChess
   class Printer
-    def initialize(out = $STDOUT)
+    def initialize(out = $stdout)
       @out = out
     end
 
@@ -9,7 +9,7 @@ module ConsoleChess
     end
 
     def clear_screen
-      @out.print "\e[H\e[2J"
+      @out.puts "\e[H\e[2J"
     end
   end
 end

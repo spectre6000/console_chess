@@ -10,31 +10,34 @@ module ConsoleChess
 
     it "greets user" do
       allow(fake_board).to receive(:print_board)
-      allow(fake_board).to receive(:winner).and_return(true)
+      allow(fake_board).to receive(:winner?).and_return(true)
       allow(fake_reader).to receive(:read).and_return("Pa1")
       session.play
 
       expect(fake_printer).to have_received(:print).with("Welcome to ConsoleChess!")
     end
 
-    it "prompts the current user for a move" do
+    it "prints the board" do
       allow(fake_printer).to receive(:print).with("Welcome to ConsoleChess!")
       allow(fake_board).to receive(:print_board)
+      allow(fake_board).to receive(:winner?).and_return(true)
       allow(fake_reader).to receive(:read).and_return("Pa1")
-      allow(fake_board).to receive(:winner).and_return(true)
       session.play
+
+      expect(fake_board).to have_received(:print_board)
+    end
+
+    it "prompts the current user for a move" do
+      session.print_turn
 
       expect(fake_printer).to have_received(:print).with("White's turn:")
     end 
 
     it "takes turns" do
-      expect(session.turn).to eql("White")
-      session.take_turn
-      expect(session.turn).to eql("Black")
-      session.take_turn
-      expect(session.turn).to eql("White")
-      session.take_turn
-      expect(session.turn).to eql("Black")
+      expect(session.take_turn).to eql("White")
+      expect(session.take_turn).to eql("Black")
+      expect(session.take_turn).to eql("White")
+      expect(session.take_turn).to eql("Black")
     end
 
     it "prompts a user for a move" do

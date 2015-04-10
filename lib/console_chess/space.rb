@@ -5,8 +5,7 @@ module ConsoleChess
 
     attr_reader :token, :position, :call_sign
 
-    def initialize(row, column, color = "empty")
-      @color = color
+    def initialize(column, row)
       @column = column
       @token = "_"
       set_token
@@ -18,21 +17,21 @@ module ConsoleChess
 
 
     def set_token(token = @token, color = @color)
-      if @color == "black"
+      if @color == "Black"
         @token = @token.downcase
-      elsif @color == "white"
+      elsif @color == "White"
         @token = @token.upcase
       end          
     end
 
     def set_row(color = @color, token = @token)
-      if @color == "black" && @token != "p"
+      if @color == "Black" && @token != "p"
         @row = "8"
-      elsif @color == "black" && @token == "p"
+      elsif @color == "Black" && @token == "p"
         @row = "7"
-      elsif @color == "white" && @token != "P"
+      elsif @color == "White" && @token != "P"
         @row = "1"
-      elsif @color == "white" && @token == "P"
+      elsif @color == "White" && @token == "P"
         @row = "2"
       end          
     end

@@ -2,8 +2,8 @@ require "spec_helper"
 
 module ConsoleChess
   describe Queen do
-    let (:bqueen) {Queen.new("d", "black")}
-    let (:wqueen) {Queen.new("d", "white")}
+    let (:bqueen) {Queen.new("d", "Black")}
+    let (:wqueen) {Queen.new("d", "White")}
 
 
     it "initializes with the correct 'color'" do

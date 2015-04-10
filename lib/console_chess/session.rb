@@ -1,13 +1,10 @@
 module ConsoleChess
   class Session
-
-    attr_reader :turn
   
     def initialize(printer = Printer.new, reader = Reader.new, board = Board.new(printer))
       @printer = printer
       @reader = reader
       @board = board
-      # @round = 1
       @turn = "Black"
     end
 
@@ -35,7 +32,7 @@ module ConsoleChess
       until valid_move?(move)
         invalid_move
         move = @reader.read
-      # add elsif to verify if the move is legal for the specific piece in question
+      # add logic to verify if the move is legal for the specific piece in question
       end
       move
     end

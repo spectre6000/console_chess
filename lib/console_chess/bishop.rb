@@ -12,7 +12,7 @@ module ConsoleChess
       set_token
       set_row
       @position = "#{@column}#{@row}"
-      @call_sign = "#{@token}#{@position}"      
+      @call_sign = "#{@token}#{@position}"
     end
 
   end

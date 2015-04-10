@@ -42,15 +42,34 @@ module ConsoleChess
     end
 
     def valid_move?(move)
-      move =~ /[PpRrNnBbQqKk][a-h][1-8]/
+      start = move.split(" ")[0]
+      target = move.split(" ")[2]
+
+      if valid_format?(start, target, move)
+        # if an individual piece exists in a given space
+          # if that piece can make that move
+          true
+          # end
+        # end
+      else
+        false
+      end
     end
 
-    def take_turn
-      @turn == "White" ? @turn = "Black" : @turn = "White"
+    def valid_format?(start, target, move)
+      valid_call_sign?(start) && valid_call_sign?(target) && "#{start} to #{target}" == move ? true : false
+    end
+
+    def valid_call_sign?(call_sign)
+      call_sign =~ /[PpRrNnBbQqKk][a-h][1-8]/
     end
 
     def invalid_move
       @printer.print("Not a valid move")
+    end
+
+    def take_turn
+      @turn == "White" ? @turn = "Black" : @turn = "White"
     end
 
   end

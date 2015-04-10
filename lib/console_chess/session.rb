@@ -31,23 +31,21 @@ module ConsoleChess
 
     def get_move(turn)
       print_turn
-      loop do
+      move = @reader.read
+      until valid_move?(move)
+        invalid_move
         move = @reader.read
-        if valid_move_format?(move)
-          invalid_move
-        # add elsif to verify if the move is legal for the specific piece in question
-        else
-          return move
-        end
+      # add elsif to verify if the move is legal for the specific piece in question
       end
+      move
     end
 
     def print_turn
       @printer.print("#{take_turn}'s turn:")
     end
 
-    def valid_move_format?(move)
-      move !~ /[PpRrNnBbQqKk][a-h]{1,2}[1-8]/
+    def valid_move?(move)
+      move =~ /[PpRrNnBbQqKk][a-h][1-8]/
     end
 
     def take_turn

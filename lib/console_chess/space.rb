@@ -10,7 +10,6 @@ module ConsoleChess
       @token = "_"
       @available_moves = []
       set_token
-      set_column
       @row = row
       @position = "#{@column}#{@row}"
       @call_sign = "#{@token}#{@position}"      
@@ -35,27 +34,6 @@ module ConsoleChess
       elsif @color == "White" && @token == "P"
         @row = "2"
       end          
-    end
-
-    def set_column
-      case @column
-      when 1
-        @column = "a"
-      when 2
-        @column = "b"
-      when 3
-        @column = "c"
-      when 4
-        @column = "d"
-      when 5
-        @column = "e"
-      when 6
-        @column = "f"
-      when 7
-        @column = "g"
-      when 8
-        @column = "h"
-      end
     end
 
     def set_available_moves

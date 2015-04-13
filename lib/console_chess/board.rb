@@ -10,14 +10,15 @@ module ConsoleChess
 
     def new_board
       primary_pieces = [[Rook, "a"], [Knight, "b"], [Bishop, "c"], [Queen, "d"], [King, "e"], [Bishop, "f"], [Knight, "g"], [Rook, "h"]]
+      columns = ["a", "b", "c", "d", "e", "f", "g", "h"]
 
       row_8 = primary_pieces.map { |piece, column| piece.new(column, "Black")}
-      row_7 = (1..8).map { |column| ConsoleChess::Pawn.new(column, "Black")}
-      row_6 = (1..8).map { |column| ConsoleChess::Space.new(column, "6")}
-      row_5 = (1..8).map { |column| ConsoleChess::Space.new(column, "5")}
-      row_4 = (1..8).map { |column| ConsoleChess::Space.new(column, "4")}
-      row_3 = (1..8).map { |column| ConsoleChess::Space.new(column, "3")}
-      row_2 = (1..8).map { |column| ConsoleChess::Pawn.new(column, "White")}
+      row_7 = columns.map { |column| ConsoleChess::Pawn.new(column, "Black")}
+      row_6 = columns.map { |column| ConsoleChess::Space.new(column, "6")}
+      row_5 = columns.map { |column| ConsoleChess::Space.new(column, "5")}
+      row_4 = columns.map { |column| ConsoleChess::Space.new(column, "4")}
+      row_3 = columns.map { |column| ConsoleChess::Space.new(column, "3")}
+      row_2 = columns.map { |column| ConsoleChess::Pawn.new(column, "White")}
       row_1 = primary_pieces.map { |piece, column| piece.new(column, "White")}
       
       @game_board = [row_8, row_7, row_6, row_5, row_4, row_3, row_2, row_1].flatten

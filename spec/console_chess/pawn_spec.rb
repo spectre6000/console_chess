@@ -2,8 +2,8 @@ require "spec_helper.rb"
 
 module ConsoleChess
   describe Pawn do
-    let (:bpawn) {Pawn.new(1, "Black")}
-    let (:wpawn) {Pawn.new(8, "White")}
+    let (:bpawn) {Pawn.new("a", "Black")}
+    let (:wpawn) {Pawn.new("h", "White")}
 
     it "initializes with the correct 'color'" do
       expect(bpawn.token).to eql("p")

@@ -2,8 +2,8 @@ require "spec_helper"
 
 module ConsoleChess
   describe Knight do
-      let (:bknight) {Knight.new("b", "Black")}
-      let (:wknight) {Knight.new("g", "White")}
+      let (:bknight) {Knight.new("b", "8", "Black")}
+      let (:wknight) {Knight.new("g", "1", "White")}
 
     it "initializes with the correct 'color'" do
       expect(bknight.token).to eql("n")

@@ -13,6 +13,7 @@ module ConsoleChess
       loop do
         print_board
         get_move(take_turn)
+        # add logit to commit move; must pass game board to piece to generate new available moves array
         break if @board.winner?
         take_turn
       end
@@ -32,8 +33,6 @@ module ConsoleChess
       until valid_move?(move)
         invalid_move
         move = @reader.read
-      # add logic to verify if the move is legal for the specific piece in question
-      # add logit to commit move; must pass game board to piece to generate new available moves array
       end
       move
     end
@@ -46,23 +45,29 @@ module ConsoleChess
       start = move.split(" ")[0]
       target = move.split(" ")[2]
 
-      if valid_format?(start, target, move)
-        if @board.piece_in_place?(start)
-          # if that piece can make that move
-          true
-          # end
-        end
+      if valid_format?(start, target, move) && 
+        @board.piece_in_place?(start) && 
+        @board.piece_in_place?(target) && 
+        @board.friendly_fire?(start, target) && 
+        @board.legal_move?(start, target)
+        true
       else
         false
       end
     end
 
     def valid_format?(start, target, move)
-      valid_call_sign?(start) && valid_call_sign?(target) && "#{start} to #{target}" == move ? true : false
+      valid_start_call_sign?(start) && 
+      valid_target_call_sign?(target) && 
+      "#{start} to #{target}" == move ? true : false
     end
 
-    def valid_call_sign?(call_sign)
+    def valid_start_call_sign?(call_sign)
       call_sign =~ /[PpRrNnBbQqKk][a-h][1-8]/
+    end
+
+    def valid_target_call_sign?(call_sign)
+      call_sign =~ /[_PpRrNnBbQqKk][a-h][1-8]/
     end
 
     def invalid_move
@@ -72,6 +77,5 @@ module ConsoleChess
     def take_turn
       @turn == "White" ? @turn = "Black" : @turn = "White"
     end
-
   end
 end

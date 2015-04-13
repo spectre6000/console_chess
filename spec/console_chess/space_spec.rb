@@ -10,6 +10,7 @@ module ConsoleChess
 
     it "initializes with the correct position" do
       expect(space.position).to eql("a6")
-    end 
+    end
+
   end
 end

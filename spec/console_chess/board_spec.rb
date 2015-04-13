@@ -88,6 +88,12 @@ module ConsoleChess
       expect(board.piece_in_place?("Pa3")).to eql(false)
     end
 
+    it "doesn't allow one to capture one's own piece" do
+      expect(board.friendly_fire?("ka1", "ka2")).to eql(false)
+      expect(board.friendly_fire?("Ka1", "Ka2")).to eql(false)
+      expect(board.friendly_fire?("ka1", "Ka2")).to eql(true)
+    end
+
     # it "returns true if a piece can make a given move" do
     #   expect(board.legal_move?("Pa2", "Pc3")).to eql(true)
     # end

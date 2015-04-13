@@ -11,6 +11,8 @@ module ConsoleChess
     it "greets user" do
       allow(fake_board).to receive(:print_board)
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
+      allow(fake_board).to receive(:friendly_fire?).and_return(true)
+      allow(fake_board).to receive(:legal_move?).and_return(true)
       allow(fake_board).to receive(:winner?).and_return(true)
       allow(fake_reader).to receive(:read).and_return("Pa2 to Pa3")
       session.play
@@ -22,6 +24,8 @@ module ConsoleChess
       allow(fake_printer).to receive(:print).with("Welcome to ConsoleChess!")
       allow(fake_board).to receive(:print_board)
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
+      allow(fake_board).to receive(:friendly_fire?).and_return(true)
+      allow(fake_board).to receive(:legal_move?).and_return(true)
       allow(fake_board).to receive(:winner?).and_return(true)
       allow(fake_reader).to receive(:read).and_return("Pa2 to Pa3")
       session.play
@@ -45,6 +49,8 @@ module ConsoleChess
     it "prompts a user for a move" do
       allow(fake_reader).to receive(:read).and_return("Pa2 to Pa3")
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
+      allow(fake_board).to receive(:friendly_fire?).and_return(true)
+      allow(fake_board).to receive(:legal_move?).and_return(true)
       session.get_move("White")
 
       expect(fake_printer).to have_received(:print).with("White's turn:")
@@ -54,27 +60,43 @@ module ConsoleChess
       allow(fake_printer).to receive(:print).with("White's turn:")
       allow(fake_reader).to receive(:read).and_return("Pa2 to Pa3")
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
+      allow(fake_board).to receive(:friendly_fire?).and_return(true)
+      allow(fake_board).to receive(:legal_move?).and_return(true)
       session.get_move("White")
 
       expect(fake_reader).to have_received(:read)
     end
 
-    it "rejects an invalid move" do
+    it "rejects an invalid move with nonsensical start/target" do
       allow(fake_printer).to receive(:print).with("White's turn:")
       allow(fake_reader).to receive(:read).and_return("blurple to Pa3", "Pa2 to blurple", "Pa2 to Pa3")
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
+      allow(fake_board).to receive(:friendly_fire?).and_return(true)
+      allow(fake_board).to receive(:legal_move?).and_return(true)
       session.get_move("White")
 
       expect(fake_printer).to have_received(:print).with("Not a valid move").twice
+    end
+
+    it "rejects an invalid move attempting to move empty space" do
+      allow(fake_printer).to receive(:print).with("White's turn:")
+      allow(fake_reader).to receive(:read).and_return("_a3 to Pa4", "Pa2 to Pa3")
+      allow(fake_board).to receive(:piece_in_place?).and_return(true)
+      allow(fake_board).to receive(:friendly_fire?).and_return(true)
+      allow(fake_board).to receive(:legal_move?).and_return(true)
+      session.get_move("White")
+
+      expect(fake_printer).to have_received(:print).with("Not a valid move")
     end
 
     it "returns the user-entered move" do
       allow(fake_printer).to receive(:print).with("White's turn:")
       allow(fake_reader).to receive(:read).and_return("Pa2 to Pa3")
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
+      allow(fake_board).to receive(:friendly_fire?).and_return(true)
+      allow(fake_board).to receive(:legal_move?).and_return(true)
 
       expect(session.get_move("White")).to eq("Pa2 to Pa3")
     end
-
   end
 end

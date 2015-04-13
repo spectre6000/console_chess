@@ -2,6 +2,7 @@ require "spec_helper.rb"
 
 module ConsoleChess
   describe Pawn do
+    let (:board) {Board.new}
     let (:bpawn) {Pawn.new("a", "7", "Black")}
     let (:wpawn) {Pawn.new("h", "2", "White")}
 
@@ -15,14 +16,13 @@ module ConsoleChess
       expect(wpawn.position).to eql("h2")
     end
 
-    # xit "calculates potential moves" do
-    #   expect(bpawn.available_moves).to eql(["a6", "a5", "b6", "b5"])
-    # end
+    xit "calculates potential moves" do
+      bpawn.populate_available_moves(board.game_board)
+      wpawn.populate_available_moves(board.game_board)
 
-    # xit "starts with the correct collection of available moves" do
-    #   expect(bpawn.available_moves).to eql(["a6", "a5", "b6", "b5"])
-    #   expect(wpawn.available_moves).to eql([""])
-    # end
+      expect(bpawn.available_moves).to eql(["_a6", "_a5"])
+      expect(wpawn.available_moves).to eql(["_h3", "_h4"])
+    end
 
   end
 end

@@ -16,4 +16,4 @@ module ConsoleChess
     end
 
   end
-end
+end 

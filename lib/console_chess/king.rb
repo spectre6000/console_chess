@@ -5,12 +5,15 @@ module ConsoleChess
 
     attr_reader :token, :position, :call_sign
 
-    def initialize(column, color)
+    def initialize(column, color, row = "")
       @color = color
-      @column = column      
+      @column = column
+      @row = row
+      @available_moves = []
       @token = "k"
       set_token
       set_row
+      set_available_moves
       @position = "#{@column}#{@row}"
       @call_sign = "#{@token}#{@position}"
     end

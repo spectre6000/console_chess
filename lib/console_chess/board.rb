@@ -32,5 +32,13 @@ module ConsoleChess
       true
     end
 
+    def piece_in_place?(piece)
+      @game_board.any? {|space| space.call_sign == piece} ? true : false
+    end
+
+    def legal_move?(start, target, game_board = @game_board)
+      (@game_board.find{|piece| piece.call_sign == start}).available_moves.contains(target) ? true : false
+    end
+
   end
 end

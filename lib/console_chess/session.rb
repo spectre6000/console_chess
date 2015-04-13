@@ -33,6 +33,7 @@ module ConsoleChess
         invalid_move
         move = @reader.read
       # add logic to verify if the move is legal for the specific piece in question
+      # add logit to commit move; must pass game board to piece to generate new available moves array
       end
       move
     end
@@ -46,11 +47,11 @@ module ConsoleChess
       target = move.split(" ")[2]
 
       if valid_format?(start, target, move)
-        # if an individual piece exists in a given space
+        if @board.piece_in_place?(start)
           # if that piece can make that move
           true
           # end
-        # end
+        end
       else
         false
       end

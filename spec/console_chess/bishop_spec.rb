@@ -14,5 +14,9 @@ module ConsoleChess
       expect(bbishop.position).to eql("c8")
       expect(wbishop.position).to eql("f1")
     end
+
+    it "starts with the correct collection of available moves" do
+
+    end
   end
 end

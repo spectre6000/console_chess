@@ -8,6 +8,7 @@ module ConsoleChess
     def initialize(column, row)
       @column = column
       @token = "_"
+      @available_moves = []
       set_token
       set_column
       @row = row
@@ -55,6 +56,10 @@ module ConsoleChess
       when 8
         @column = "h"
       end
+    end
+
+    def set_available_moves
+
     end
 
   end

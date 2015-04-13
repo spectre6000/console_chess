@@ -15,5 +15,9 @@ module ConsoleChess
       expect(wking.position).to eql("e1")
     end
 
+    it "starts with the correct collection of available moves" do
+
+    end
+
   end
 end

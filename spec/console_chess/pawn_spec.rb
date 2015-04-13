@@ -15,5 +15,14 @@ module ConsoleChess
       expect(wpawn.position).to eql("h2")
     end
 
+    # xit "calculates potential moves" do
+    #   expect(bpawn.available_moves).to eql(["a6", "a5", "b6", "b5"])
+    # end
+
+    # xit "starts with the correct collection of available moves" do
+    #   expect(bpawn.available_moves).to eql(["a6", "a5", "b6", "b5"])
+    #   expect(wpawn.available_moves).to eql([""])
+    # end
+
   end
 end

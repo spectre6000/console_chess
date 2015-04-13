@@ -14,5 +14,9 @@ module ConsoleChess
       expect(bknight.position).to eql("b8")
       expect(wknight.position).to eql("g1")
     end
+
+    it "starts with the correct collection of available moves" do
+
+    end
   end
 end

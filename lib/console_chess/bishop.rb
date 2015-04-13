@@ -9,6 +9,7 @@ module ConsoleChess
       @color = color
       @column = column
       @token = "b"
+      @available_moves = []
       set_token
       set_row
       @position = "#{@column}#{@row}"

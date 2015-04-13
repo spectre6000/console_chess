@@ -80,5 +80,21 @@ module ConsoleChess
       expect(board.game_board[63].call_sign).to eq("Rh1")
     end
 
+    it "knows when a piece is in a given place" do
+      expect(board.piece_in_place?("Pa2")).to eql(true)
+    end
+
+    it "knows when a piece is not in a given place" do
+      expect(board.piece_in_place?("Pa3")).to eql(false)
+    end
+
+    # it "returns true if a piece can make a given move" do
+    #   expect(board.legal_move?("Pa2", "Pc3")).to eql(true)
+    # end
+
+    # it "returns false if a piece can not make a given move" do
+    #   expect(board.legal_move?("Pa2", "Pc7")).to eql(false)
+    # end
+
   end
 end

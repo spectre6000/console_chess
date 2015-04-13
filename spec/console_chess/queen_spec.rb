@@ -15,5 +15,10 @@ module ConsoleChess
       expect(bqueen.position).to eql("d8")
       expect(wqueen.position).to eql("d1")
     end
+
+    it "starts with the correct collection of available moves" do
+
+    end
+    
   end
 end

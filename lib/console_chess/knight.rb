@@ -15,5 +15,5 @@ module ConsoleChess
       @call_sign = "#{@token}#{@position}"      
     end
 
-  end
+  end 
 end

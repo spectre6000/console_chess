@@ -54,7 +54,7 @@ module ConsoleChess
     end
 
     def legal_move?(start, target, game_board = @game_board)
-      (@game_board.find{|piece| piece.call_sign == start}).legal_move?(target) ? true : false
+      (@game_board.find{|piece| piece.call_sign == start}).available_move?(target) ? true : false
     end
 
   end

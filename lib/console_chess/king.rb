@@ -7,9 +7,9 @@ module ConsoleChess
       @row == "8" ? @token = "k" : @token = "K"
     end
 
-    def legal_move?(target)
+    def available_move?(target)
       populate_available_moves
-      @available_moves.contains?(target)
+      @available_moves.include?(target[1..-1])
     end
 
     def populate_available_moves

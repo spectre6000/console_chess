@@ -16,7 +16,8 @@ module ConsoleChess
     end
 
     it "starts with the correct collection of available moves" do
-
+      wking.populate_available_moves
+      expect(wking.available_moves).to eql(["d2", "e2", "f2", "d1", "f1"])
     end
 
   end

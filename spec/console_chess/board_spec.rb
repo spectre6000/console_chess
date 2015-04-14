@@ -89,14 +89,21 @@ module ConsoleChess
     end
 
     it "doesn't allow one to capture one's own piece" do
-      expect(board.friendly_fire?("ka1", "ka2")).to eql(false)
-      expect(board.friendly_fire?("Ka1", "Ka2")).to eql(false)
-      expect(board.friendly_fire?("ka1", "Ka2")).to eql(true)
+      expect(board.friendly_fire?("ka1", "qa2")).to eql(true)
+      expect(board.friendly_fire?("Ka1", "Qa2")).to eql(true)
+      expect(board.friendly_fire?("ka1", "Ka2")).to eql(false)
+      expect(board.friendly_fire?("ka1", "_a2")).to eql(false)
     end
 
-    # it "returns true if a piece can make a given move" do
-    #   expect(board.legal_move?("Pa2", "Pc3")).to eql(true)
-    # end
+    it "knows when a piece is being captured" do
+      expect(board.capture?("ka1", "_a2")).to eql(false)
+      expect(board.capture?("Ka1", "Ka2")).to eql(false)
+      expect(board.capture?("ka1", "Ka2")).to eql(true)
+    end
+
+    it "returns true if a piece can make a given move" do
+      expect(board.legal_move?("Pa2", "Pc3")).to eql(true)
+    end
 
     # it "returns false if a piece can not make a given move" do
     #   expect(board.legal_move?("Pa2", "Pc7")).to eql(false)

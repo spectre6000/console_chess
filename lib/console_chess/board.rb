@@ -39,6 +39,14 @@ module ConsoleChess
 
     def friendly_fire?(start, target)
       (/[PRNBQK]/.match(start[0]) && 
+        /[PRNBQK]/.match(target[0])) || 
+      (/[prnbqk]/.match(start[0]) && 
+        /[prnbqk]/.match(target[0])) ? 
+      true : false
+    end
+
+    def capture?(start, target)
+      (/[PRNBQK]/.match(start[0]) && 
         /[prnbqk]/.match(target[0])) || 
       (/[prnbqk]/.match(start[0]) && 
         /[PRNBQK]/.match(target[0])) ? 
@@ -46,7 +54,7 @@ module ConsoleChess
     end
 
     def legal_move?(start, target, game_board = @game_board)
-      (@game_board.find{|piece| piece.call_sign == start}).legal_move?(target, game_board) ? true : false
+      (@game_board.find{|piece| piece.call_sign == start}).legal_move?(target) ? true : false
     end
 
   end

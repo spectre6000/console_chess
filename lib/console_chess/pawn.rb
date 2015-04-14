@@ -3,42 +3,38 @@ require "console_chess/space"
 module ConsoleChess
   class Pawn < Space
 
-    @move_count = 0
-
     def set_token
       @row == "7" ? @token = "p" : @token = "P"
     end
 
-    def legal_move?(target, game_board)
-      # populate_available_moves(game_board)
-      # @available_moves.contains?(target)
+    def populate_available_moves(capture)
+      #move one space forward
+      @color == "White" ? @available_moves << "#{@column}#{@row.to_i + 1}" : @available_moves << "#{@column}#{@row.to_i - 1}"
+      #move forward two spaces if first move
+      if @move_count == 0
+        @color == "White" ? @available_moves << "#{@column}#{@row.to_i + 2}" : @available_moves << "#{@column}#{@row.to_i - 2}"
+      end
+      #capture one space forward and to either side if occupied
+      if capture == true
+        if @color == "White"
+          @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i + 1}" if (@column.ord + 1) < 105
+          @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i + 1}" if (@column.ord - 1) > 96
+        else
+          @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i - 1}" if (@column.ord + 1) < 105
+          @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i - 1}" if (@column.ord - 1) > 96
+        end
+      end
+      #en passant
+      if @move_count == 0 && capture == true
+        if @color == "White"
+          @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i + 2}" if (@column.ord + 1) < 105
+          @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i + 2}" if (@column.ord - 1) > 96
+        else
+          @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i - 2}" if (@column.ord + 1) < 105
+          @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i - 2}" if (@column.ord - 1) > 96
+        end
+      end
     end
-
-    # def populate_available_moves(game_board)
-    #   #move one space forward if not occupied
-    #   if game_board.any? {|space| space.call_sign == "_#{@column}#{@token == "p" ? @row.to_i - 1 : @row.to_i + 1}"}
-    #     @available_moves << "_#{@column}#{@token == "p" ? @row.to_i - 1 : @row.to_i + 1}"
-    #   end
-    #   #move forward two spaces if not occupied and first move
-    #   if ((@token == "p" && @row == "7") || (@token == "P" && @row == "2")) && game_board.any? {|space| space.call_sign == "_#{@column}#{@token == "p" ? @row.to_i - 2 : @row.to_i + 2}"}
-    #     @available_moves << "_#{@column}#{@token == "p" ? @row.to_i - 2 : @row.to_i + 2}" 
-    #   end
-
-    #   #capture one space forward and to either side if occupied
-    #   # game_board.any? {|space| space.call_sign == "#{ =~ /[PpRrNnBbQqKk]/ }#{row + 1}#{column + 1}"} ? @available_moves << "#{ =~ /[PpRrNnBbQqKk]/ }#{row + 2}#{column}"
-    #   # game_board.any? {|space| space.call_sign == "#{ =~ /[PpRrNnBbQqKk]/ }#{row + 1}#{column - 1}"} ? @available_moves << "#{ =~ /[PpRrNnBbQqKk]/ }#{row + 2}#{column}"
-    #   if game_board.any? {|space| space.call_sign == "_#{@column}#{@token == "p" ? @row.to_i - 1 : @row.to_i + 1}"}
-    #     @available_moves << "_#{@column}#{@token == "p" ? @row.to_i - 1 : @row.to_i + 1}"
-    #   end
-      
-    #   #en passant
-    #   # game_board.any? {|space| space.call_sign == "#{ =~ /[PpRrNnBbQqKk]/ }#{row + 2}#{column + 1}"} && @move_count == 0 ? @available_moves << "#{ =~ /[PpRrNnBbQqKk]/ }#{row + 2}#{column}"
-    #   # game_board.any? {|space| space.call_sign == "#{ =~ /[PpRrNnBbQqKk]/ }#{row + 2}#{column - 1}"} && @move_count == 0 ? @available_moves << "#{ =~ /[PpRrNnBbQqKk]/ }#{row + 2}#{column}"
-    # end
-
-    # def occupied?(target)
-    #   target[0] != "_" ? true : false
-    # end
 
   end
 end

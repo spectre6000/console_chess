@@ -24,11 +24,25 @@ module ConsoleChess
       expect(bpawn.available_moves).to eql(["a6", "a5"])
     end
 
-    it "correctly determines whether or not a target move is available" do
-      expect(wpawn.available_move?("Ph3")).to eql(true)
-      expect(wpawn.available_move?("Ph5")).to eql(false)
-      expect(bpawn.available_move?("pa6")).to eql(true)
-      expect(bpawn.available_move?("pa4")).to eql(false)
+    it "correctly determines whether or not a target starting move is available" do
+      expect(wpawn.available_move?("_h3")).to eql(true)
+      expect(wpawn.available_move?("_h4")).to eql(true)
+      expect(wpawn.available_move?("_h5")).to eql(false)
+      expect(bpawn.available_move?("_a6")).to eql(true)
+      expect(bpawn.available_move?("_a5")).to eql(true)
+      expect(bpawn.available_move?("_a4")).to eql(false)
+    end
+
+    it "recognizes a potential capture including en passant" do
+      board.game_board[-18].instance_variable_set(:@token, "p")
+      board.game_board[-26].instance_variable_set(:@token, "p")
+      board.game_board[17].instance_variable_set(:@token, "P")
+      board.game_board[25].instance_variable_set(:@token, "P")
+
+      expect(wpawn.available_move?("pg3")).to eql(true)
+      expect(wpawn.available_move?("pg4")).to eql(true)
+      expect(bpawn.available_move?("Pb6")).to eql(true)
+      expect(bpawn.available_move?("Pb5")).to eql(true)
     end
 
   end

@@ -28,5 +28,9 @@ module ConsoleChess
       @available_moves.include?(target[1..-1])
     end
 
+    def space_verify(game_board, space)
+      game_board.find{|piece| piece.position == space}
+    end
+
   end
 end

@@ -9,31 +9,29 @@ module ConsoleChess
 
     def populate_available_moves(game_board)
       #move one space forward
-      if @game_board.find{|piece| piece.position == "#{@column}#{@row.to_i + 1}"}
-        @color == "White" ? @available_moves << "#{@column}#{@row.to_i + 1}" : @available_moves << "#{@column}#{@row.to_i - 1}"
-        #move forward two spaces if first move
-        if @move_count == 0
-          @color == "White" ? @available_moves << "#{@column}#{@row.to_i + 2}" : @available_moves << "#{@column}#{@row.to_i - 2}"
+      @color == "White" ? @available_moves << "#{@column}#{@row.to_i + 1}" : @available_moves << "#{@column}#{@row.to_i - 1}"
+      #move forward two spaces if first move
+      if @move_count == 0
+        @color == "White" ? @available_moves << "#{@column}#{@row.to_i + 2}" : @available_moves << "#{@column}#{@row.to_i - 2}"
+      end
+      #capture one space forward and to either side if occupied
+      if capture == true
+        if @color == "White"
+          @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i + 1}" if (@column.ord + 1) < 105
+          @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i + 1}" if (@column.ord - 1) > 96
+        else
+          @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i - 1}" if (@column.ord + 1) < 105
+          @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i - 1}" if (@column.ord - 1) > 96
         end
-        #capture one space forward and to either side if occupied
-        if capture == true
-          if @color == "White"
-            @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i + 1}" if (@column.ord + 1) < 105
-            @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i + 1}" if (@column.ord - 1) > 96
-          else
-            @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i - 1}" if (@column.ord + 1) < 105
-            @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i - 1}" if (@column.ord - 1) > 96
-          end
-        end
-        #en passant
-        if @move_count == 0 && capture == true
-          if @color == "White"
-            @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i + 2}" if (@column.ord + 1) < 105
-            @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i + 2}" if (@column.ord - 1) > 96
-          else
-            @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i - 2}" if (@column.ord + 1) < 105
-            @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i - 2}" if (@column.ord - 1) > 96
-          end
+      end
+      #en passant
+      if @move_count == 0 && capture == true
+        if @color == "White"
+          @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i + 2}" if (@column.ord + 1) < 105
+          @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i + 2}" if (@column.ord - 1) > 96
+        else
+          @available_moves << "#{(@column.ord + 1).chr}#{@row.to_i - 2}" if (@column.ord + 1) < 105
+          @available_moves << "#{(@column.ord - 1).chr}#{@row.to_i - 2}" if (@column.ord - 1) > 96
         end
       end
     end

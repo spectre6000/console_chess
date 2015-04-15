@@ -2,7 +2,8 @@ require "spec_helper.rb"
 
 module ConsoleChess
   describe Space do
-    let (:space) {Space.new("a", "6")}
+    let (:board) {Board.new}
+    let (:space) {Space.new("a", "6", "_", board)}
 
     it "initializes with the correct token" do
       expect(space.token).to eql("_")

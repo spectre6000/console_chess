@@ -5,10 +5,11 @@ module ConsoleChess
 
     attr_reader :token, :position, :call_sign, :available_moves, :move_count
 
-    def initialize(column, row, color = "_")
+    def initialize(column, row, color, board)
       @column = column
       @row = row
       @color = color
+      @game_board = board.game_board
 
       @token = "_"
       set_token
@@ -23,13 +24,36 @@ module ConsoleChess
       @token = "_"
     end
 
-    def available_move?(target, game_board)
-      populate_available_moves(game_board)
-      @available_moves.include?(target[1..-1])
+    def unmoved?
+      true if @move_count == 0
     end
 
-    def space_verify(game_board, space)
-      game_board.find{|piece| piece.position == space}
+    def get_space(space)
+      @game_board.find { |piece| piece.position == space}
+    end
+
+    def available_move?(target)
+      populate_available_moves
+      @available_moves.include?(target[1..2])
+    end
+
+    def on_board?(column, row)
+      column > 96 && 
+      column < 105 && 
+      row > 0 && 
+      row < 9 && 
+      "#{column.chr}#{row}" != @position 
+    end
+
+    def empty?(*positions)
+      positions.all? { |position| get_space(position).token =~ /_/ }
+    end
+
+    def capture?(position)
+      @color == "White" && 
+      (get_space(position).token) =~ /[prnbqk]/ || 
+      @color == "Black" && 
+      (get_space(position).token) =~ /[PRNBQK]/
     end
 
   end

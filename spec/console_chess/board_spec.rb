@@ -101,10 +101,5 @@ module ConsoleChess
     #   expect(board.capture?("ka1", "Ka2")).to eql(true)
     # end
 
-    it "determines if a piece can make a given move" do
-      expect(board.legal_move?("Ke1", "Ke2")).to eql(true)
-      expect(board.legal_move?("Ke1", "Ke3")).to eql(false)
-    end
-
   end
 end

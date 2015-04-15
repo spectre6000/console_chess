@@ -12,14 +12,14 @@ module ConsoleChess
       primary_pieces = [[Rook, "a"], [Knight, "b"], [Bishop, "c"], [Queen, "d"], [King, "e"], [Bishop, "f"], [Knight, "g"], [Rook, "h"]]
       columns = ["a", "b", "c", "d", "e", "f", "g", "h"]
 
-      row_8 = primary_pieces.map { |piece, column| piece.new(column, "8", "Black")}
-      row_7 = columns.map { |column| ConsoleChess::Pawn.new(column, "7", "Black")}
-      row_6 = columns.map { |column| ConsoleChess::Space.new(column, "6")}
-      row_5 = columns.map { |column| ConsoleChess::Space.new(column, "5")}
-      row_4 = columns.map { |column| ConsoleChess::Space.new(column, "4")}
-      row_3 = columns.map { |column| ConsoleChess::Space.new(column, "3")}
-      row_2 = columns.map { |column| ConsoleChess::Pawn.new(column, "2", "White")}
-      row_1 = primary_pieces.map { |piece, column| piece.new(column, "1", "White")}
+      row_8 = primary_pieces.map { |piece, column| piece.new(column, "8", "Black", self)}
+      row_7 = columns.map { |column| ConsoleChess::Pawn.new(column, "7", "Black", self)}
+      row_6 = columns.map { |column| ConsoleChess::Space.new(column, "6", "_", self)}
+      row_5 = columns.map { |column| ConsoleChess::Space.new(column, "5", "_", self)}
+      row_4 = columns.map { |column| ConsoleChess::Space.new(column, "4", "_", self)}
+      row_3 = columns.map { |column| ConsoleChess::Space.new(column, "3", "_", self)}
+      row_2 = columns.map { |column| ConsoleChess::Pawn.new(column, "2", "White", self)}
+      row_1 = primary_pieces.map { |piece, column| piece.new(column, "1", "White", self)}
       
       @game_board = [row_8, row_7, row_6, row_5, row_4, row_3, row_2, row_1].flatten
     end
@@ -45,6 +45,14 @@ module ConsoleChess
       true : false
     end
 
+    def legal_move?(start, target)
+      (@game_board.find{ |piece| piece.call_sign == start}).available_move?(target) ? true : false
+    end
+
+  end
+end
+
+
     # def capture?(start, target)
     #   (/[PRNBQK]/.match(start[0]) && 
     #     /[prnbqk]/.match(target[0])) || 
@@ -52,11 +60,3 @@ module ConsoleChess
     #     /[PRNBQK]/.match(target[0])) ? 
     #   true : false
     # end
-
-    def legal_move?(start, target)
-      # capture = capture?(start, target)
-      (@game_board.find{|piece| piece.call_sign == start}).available_move?(target, @game_board) ? true : false
-    end
-
-  end
-end

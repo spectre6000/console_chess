@@ -51,12 +51,3 @@ module ConsoleChess
 
   end
 end
-
-
-    # def capture?(start, target)
-    #   (/[PRNBQK]/.match(start[0]) && 
-    #     /[prnbqk]/.match(target[0])) || 
-    #   (/[prnbqk]/.match(start[0]) && 
-    #     /[PRNBQK]/.match(target[0])) ? 
-    #   true : false
-    # end

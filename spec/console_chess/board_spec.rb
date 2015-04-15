@@ -95,11 +95,5 @@ module ConsoleChess
       expect(board.friendly_fire?("ka1", "_a2")).to eql(false)
     end
 
-    # it "knows when a piece is being captured" do
-    #   expect(board.capture?("ka1", "_a2")).to eql(false)
-    #   expect(board.capture?("Ka1", "Ka2")).to eql(false)
-    #   expect(board.capture?("ka1", "Ka2")).to eql(true)
-    # end
-
   end
 end

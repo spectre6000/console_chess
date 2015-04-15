@@ -28,6 +28,10 @@ module ConsoleChess
       true if @move_count == 0
     end
 
+    def white?
+      @color == "White" ? true : false
+    end
+
     def get_space(space)
       @game_board.find { |piece| piece.position == space}
     end
@@ -50,10 +54,8 @@ module ConsoleChess
     end
 
     def capture?(position)
-      @color == "White" && 
-      (get_space(position).token) =~ /[prnbqk]/ || 
-      @color == "Black" && 
-      (get_space(position).token) =~ /[PRNBQK]/
+      (white? && (get_space(position).token) =~ /[prnbqk]/ ) || 
+      (!white? && (get_space(position).token) =~ /[PRNBQK]/ )
     end
 
   end

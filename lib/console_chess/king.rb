@@ -24,15 +24,16 @@ module ConsoleChess
     end
 
     def castle
-      if @color == "White"
+      if white?
         @available_moves << "c1" if get_space("a1").unmoved? && empty?("b1", "c1", "d1")
         @available_moves << "g1" if get_space("h1").unmoved? && empty?("g1", "f1")
-      end
-      if @color == "Black"
+      else
         @available_moves << "c8" if get_space("a8").unmoved? && empty?("b8", "c8", "d8")
         @available_moves << "g8" if get_space("h8").unmoved? && empty?("g8", "f8")
       end
     end
+
+    #add logic that prevents moving into check
 
   end
 end

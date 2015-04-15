@@ -45,17 +45,17 @@ module ConsoleChess
       true : false
     end
 
-    def capture?(start, target)
-      (/[PRNBQK]/.match(start[0]) && 
-        /[prnbqk]/.match(target[0])) || 
-      (/[prnbqk]/.match(start[0]) && 
-        /[PRNBQK]/.match(target[0])) ? 
-      true : false
-    end
+    # def capture?(start, target)
+    #   (/[PRNBQK]/.match(start[0]) && 
+    #     /[prnbqk]/.match(target[0])) || 
+    #   (/[prnbqk]/.match(start[0]) && 
+    #     /[PRNBQK]/.match(target[0])) ? 
+    #   true : false
+    # end
 
-    def legal_move?(start, target, game_board = @game_board)
-      capture = capture?(start, target)
-      (@game_board.find{|piece| piece.call_sign == start}).available_move?(target, capture) ? true : false
+    def legal_move?(start, target)
+      # capture = capture?(start, target)
+      (@game_board.find{|piece| piece.call_sign == start}).available_move?(target, @game_board) ? true : false
     end
 
   end

@@ -3,7 +3,7 @@
 module ConsoleChess
   class Space
 
-    attr_reader :token, :position, :call_sign, :available_moves
+    attr_reader :token, :position, :call_sign, :available_moves, :move_count
 
     def initialize(column, row, color = "_")
       @column = column
@@ -23,8 +23,8 @@ module ConsoleChess
       @token = "_"
     end
 
-    def available_move?(target, capture)
-      populate_available_moves(capture)
+    def available_move?(target, game_board)
+      populate_available_moves(game_board)
       @available_moves.include?(target[1..-1])
     end
 

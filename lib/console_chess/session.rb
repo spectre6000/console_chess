@@ -48,7 +48,6 @@ module ConsoleChess
       if valid_format?(start, target, move) && 
         @board.piece_in_place?(start) && 
         @board.piece_in_place?(target) && 
-        @board.friendly_fire?(start, target) && 
         @board.legal_move?(start, target)
         true
       else

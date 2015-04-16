@@ -11,7 +11,6 @@ module ConsoleChess
     it "greets user" do
       allow(fake_board).to receive(:print_board)
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
-      allow(fake_board).to receive(:friendly_fire?).and_return(true)
       allow(fake_board).to receive(:legal_move?).and_return(true)
       allow(fake_board).to receive(:winner?).and_return(true)
       allow(fake_reader).to receive(:read).and_return("Pa2 to Pa3")
@@ -24,7 +23,6 @@ module ConsoleChess
       allow(fake_printer).to receive(:print).with("Welcome to ConsoleChess!")
       allow(fake_board).to receive(:print_board)
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
-      allow(fake_board).to receive(:friendly_fire?).and_return(true)
       allow(fake_board).to receive(:legal_move?).and_return(true)
       allow(fake_board).to receive(:winner?).and_return(true)
       allow(fake_reader).to receive(:read).and_return("Pa2 to Pa3")
@@ -49,7 +47,6 @@ module ConsoleChess
     it "prompts a user for a move" do
       allow(fake_reader).to receive(:read).and_return("Pa2 to Pa3")
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
-      allow(fake_board).to receive(:friendly_fire?).and_return(true)
       allow(fake_board).to receive(:legal_move?).and_return(true)
       session.get_move("White")
 
@@ -60,7 +57,6 @@ module ConsoleChess
       allow(fake_printer).to receive(:print).with("White's turn:")
       allow(fake_reader).to receive(:read).and_return("Pa2 to Pa3")
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
-      allow(fake_board).to receive(:friendly_fire?).and_return(true)
       allow(fake_board).to receive(:legal_move?).and_return(true)
       session.get_move("White")
 
@@ -71,7 +67,6 @@ module ConsoleChess
       allow(fake_printer).to receive(:print).with("White's turn:")
       allow(fake_reader).to receive(:read).and_return("blurple to Pa3", "Pa2 to blurple", "Pa2 to Pa3")
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
-      allow(fake_board).to receive(:friendly_fire?).and_return(true)
       allow(fake_board).to receive(:legal_move?).and_return(true)
       session.get_move("White")
 
@@ -82,7 +77,6 @@ module ConsoleChess
       allow(fake_printer).to receive(:print).with("White's turn:")
       allow(fake_reader).to receive(:read).and_return("_a3 to Pa4", "Pa2 to Pa3")
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
-      allow(fake_board).to receive(:friendly_fire?).and_return(true)
       allow(fake_board).to receive(:legal_move?).and_return(true)
       session.get_move("White")
 
@@ -93,7 +87,6 @@ module ConsoleChess
       allow(fake_printer).to receive(:print).with("White's turn:")
       allow(fake_reader).to receive(:read).and_return("Pa2 to Pa3")
       allow(fake_board).to receive(:piece_in_place?).and_return(true)
-      allow(fake_board).to receive(:friendly_fire?).and_return(true)
       allow(fake_board).to receive(:legal_move?).and_return(true)
 
       expect(session.get_move("White")).to eq("Pa2 to Pa3")

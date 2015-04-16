@@ -37,14 +37,6 @@ module ConsoleChess
       @game_board.any? {|space| space.call_sign == piece} ? true : false
     end
 
-    def friendly_fire?(start, target)
-      (/[PRNBQK]/.match(start[0]) && 
-        /[PRNBQK]/.match(target[0])) || 
-      (/[prnbqk]/.match(start[0]) && 
-        /[prnbqk]/.match(target[0])) ? 
-      true : false
-    end
-
     def legal_move?(start, target)
       (@game_board.find{ |piece| piece.call_sign == start}).available_move?(target) ? true : false
     end

@@ -28,7 +28,7 @@ module ConsoleChess
     it "populates the correct collection of moves after start" do
       mrook.populate_available_moves
 
-      expect(mrook.available_moves).to eql(["a4", "b4", "c4", "d4", "h4", "g4", "f4", "e6", "e5", "e2", "e3"])
+      expect(mrook.available_moves).to eql(["e5", "e6", "e3", "e2", "d4", "c4", "b4", "a4", "f4", "g4", "h4"])
     end
   end
 end

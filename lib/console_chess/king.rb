@@ -13,8 +13,8 @@ module ConsoleChess
       
       x.each do |x|
         y.each do |y|
-          @available_moves << "#{x.chr}#{y}" if on_board?(x, y) && 
-          (capture?("#{x.chr}#{y}") || empty?("#{x.chr}#{y}"))
+          move = "#{x.chr}#{y}"
+          @available_moves << move if on_board?(move) && (capture?(move) || empty?(move))
         end
       end
 

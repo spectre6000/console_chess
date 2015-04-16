@@ -12,18 +12,19 @@ module ConsoleChess
       y1 = [forward(1), backward(1)]
       x2 = [left(1), right(1)]
       y2 = [forward(2), backward(2)]
+      
 
       x1.each do |x|
         y1.each do |y|
           move = "#{x.chr}#{y}"
-          @available_moves << move if on_board?(x, y) && (capture?(move) || empty?(move))
+          @available_moves << move if on_board?(move) && (capture?(move) || empty?(move))
         end
       end
 
       x2.each do |x|
         y2.each do |y|
           move = "#{x.chr}#{y}"
-          @available_moves << move if on_board?(x, y) && (capture?(move) || empty?(move))
+          @available_moves << move if on_board?(move) && (capture?(move) || empty?(move))
         end
       end
     end

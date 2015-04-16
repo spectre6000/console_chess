@@ -33,19 +33,19 @@ module ConsoleChess
       @available_moves.include?(target[1..2])
     end
 
-    def on_board?(column, row)
-      column > 96 && 
-      column < 105 && 
-      row > 0 && 
-      row < 9 && 
-      "#{column.chr}#{row}" != @position 
+    def on_board?(position)
+      position[0].ord > 96 && 
+      position[0].ord < 105 && 
+      position[1..-1].to_i > 0 && 
+      position[1..-1].to_i < 9 && 
+      position != @position 
     end
 
     def empty?(*positions); positions.all? { |position| get_space(position).token =~ /_/ }; end
 
     def capture?(position)
-      (white? && (get_space(position).token) =~ /[prnbqk]/ ) || 
-      (!white? && (get_space(position).token) =~ /[PRNBQK]/ )
+        (white? && (get_space(position).token) =~ /[prnbqk]/ ) || 
+        (!white? && (get_space(position).token) =~ /[PRNBQK]/ )
     end
 
     def left(x); @column.ord - x; end

@@ -17,7 +17,7 @@ module ConsoleChess
     end
 
     it "starts with the correct collection of available moves" do
-      #meaningless change
+      
     end
   end
 end

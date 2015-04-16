@@ -1,7 +1,7 @@
 module ConsoleChess
   class Session
   
-    def initialize(printer = Printer.new, reader = Reader.new, board = Board.new(printer))
+    def initialize(printer = Printer.new, reader = Reader.new, board = Board.new)
       @printer = printer
       @reader = reader
       @board = board

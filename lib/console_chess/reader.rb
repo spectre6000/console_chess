@@ -1,6 +1,6 @@
 module ConsoleChess
   class Reader
-    def initialize(input = $STDIN)
+    def initialize(input = $stdin)
       @input = input
     end
 

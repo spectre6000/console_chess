@@ -1,4 +1,4 @@
-require "spec_helper.rb"
+require "spec_helper"
 
 module ConsoleChess
   describe King do
@@ -51,6 +51,7 @@ module ConsoleChess
 
   end
 end
+
 
 
 

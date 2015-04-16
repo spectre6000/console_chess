@@ -17,7 +17,7 @@ module ConsoleChess
     end
 
     it "starts with the correct collection of available moves" do
-      #changing it again
+      #this could be the final test
     end
   end
 end

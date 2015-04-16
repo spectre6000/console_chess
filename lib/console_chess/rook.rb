@@ -7,9 +7,6 @@ module ConsoleChess
 
   def populate_available_moves
     @available_moves = []
-
-    
-just for settings
     
   end    
 

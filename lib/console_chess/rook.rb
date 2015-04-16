@@ -9,7 +9,7 @@ module ConsoleChess
     @available_moves = []
 
     
-
+just for settings
     
   end    
 

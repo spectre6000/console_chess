@@ -28,7 +28,7 @@ module ConsoleChess
     it "populates the correct collection of moves after start" do
       mknight.populate_available_moves
 
-      expect(mknight.available_moves).to eql(["b3", "b5", "f3", "f5", "c6", "c2", "e6", "e2"])
+      expect(mknight.available_moves).to eql(["b3", "b5", "f3", "f5", "c2", "c6", "e2", "e6"])
     end
   end
 end

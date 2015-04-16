@@ -8,8 +8,8 @@ module ConsoleChess
     def populate_available_moves
       @available_moves = []
 
-      x = [ left , @column.ord, right ]
-      y = [ forward , @row.to_i , backward ]
+      x = [ left(1) , @column.ord, right(1) ]
+      y = [ forward(1) , @row.to_i , backward(1) ]
       
       x.each do |x|
         y.each do |y|

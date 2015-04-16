@@ -48,13 +48,13 @@ module ConsoleChess
       (!white? && (get_space(position).token) =~ /[PRNBQK]/ )
     end
 
-    def left; @column.ord - 1; end
+    def left(x); @column.ord - x; end
 
-    def right; @column.ord + 1; end
+    def right(x); @column.ord + x; end
 
-    def forward; white? ? @row.to_i + 1 : @row.to_i - 1; end
+    def forward(x); white? ? @row.to_i + x : @row.to_i - x; end
 
-    def backward; white? ? @row.to_i - 1 : @row.to_i + 1; end
+    def backward(x); white? ? @row.to_i - x : @row.to_i + x; end
 
   end
 end

@@ -25,7 +25,7 @@ module ConsoleChess
       bking.populate_available_moves
 
       expect(wkingii.available_moves).to eql(["d5", "d4", "d3", "e5", "e3", "f5",  "f4", "f3"])
-      expect(bkingii.available_moves).to eql(["d6", "d5", "d4", "e6", "e4", "f6", "f5", "f4"])
+      expect(bkingii.available_moves).to eql(["d4", "d5", "d6", "e4", "e6", "f4", "f5", "f6"])
       expect(wking.available_moves).to eql([])
       expect(bking.available_moves).to eql([])
     end

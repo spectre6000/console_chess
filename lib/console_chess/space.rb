@@ -20,21 +20,13 @@ module ConsoleChess
       @move_count = 0
     end
 
-    def set_token
-      @token = "_"
-    end
+    def set_token; @token = "_"; end
 
-    def unmoved?
-      true if @move_count == 0
-    end
+    def unmoved?; true if @move_count == 0; end
 
-    def white?
-      @color == "White" ? true : false
-    end
+    def white?; @color == "White" ? true : false; end
 
-    def get_space(space)
-      @game_board.find { |piece| piece.position == space}
-    end
+    def get_space(space); @game_board.find { |piece| piece.position == space}; end
 
     def available_move?(target)
       populate_available_moves
@@ -49,14 +41,20 @@ module ConsoleChess
       "#{column.chr}#{row}" != @position 
     end
 
-    def empty?(*positions)
-      positions.all? { |position| get_space(position).token =~ /_/ }
-    end
+    def empty?(*positions); positions.all? { |position| get_space(position).token =~ /_/ }; end
 
     def capture?(position)
       (white? && (get_space(position).token) =~ /[prnbqk]/ ) || 
       (!white? && (get_space(position).token) =~ /[PRNBQK]/ )
     end
+
+    def left; @column.ord - 1; end
+
+    def right; @column.ord + 1; end
+
+    def forward; white? ? @row.to_i + 1 : @row.to_i - 1; end
+
+    def backward; white? ? @row.to_i - 1 : @row.to_i + 1; end
 
   end
 end

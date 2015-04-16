@@ -3,15 +3,13 @@ require "console_chess/space"
 module ConsoleChess
   class King < Space
 
-    def set_token
-      @row == "8" ? @token = "k" : @token = "K"
-    end
+    def set_token; @row == "8" ? @token = "k" : @token = "K"; end
 
     def populate_available_moves
       @available_moves = []
 
-      x = [ (@column.ord - 1) , @column.ord, (@column.ord + 1) ]
-      y = [ @row.to_i + 1 , @row.to_i , @row.to_i - 1 ]
+      x = [ left , @column.ord, right ]
+      y = [ forward , @row.to_i , backward ]
       
       x.each do |x|
         y.each do |y|

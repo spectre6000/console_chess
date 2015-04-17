@@ -54,5 +54,47 @@ module ConsoleChess
 
     def backward(x); white? ? @row.to_i - x : @row.to_i + x; end
 
+    def move_forward
+      Proc.new { |x| "#{ @column }#{ forward(x) }" }
+    end
+
+    def move_backward
+      Proc.new { |x| "#{ @column }#{ backward(x) }" }
+    end
+
+    def move_left
+      Proc.new { |x| "#{ left(x).chr }#{ @row }" }
+    end
+
+    def move_right
+      Proc.new { |x| "#{ right(x).chr }#{ @row }" }
+    end
+
+    def move_ul
+      Proc.new { |x| "#{ left(x).chr }#{ forward(x) }" }
+    end
+
+    def move_dl
+      Proc.new { |x| "#{ left(x).chr }#{ backward(x) }" }
+    end
+
+    def move_ur
+      Proc.new { |x| "#{ right(x).chr }#{ forward(x) }" }
+    end
+
+    def move_dr
+      Proc.new { |x| "#{ right(x).chr }#{ backward(x) }" }
+    end
+
+    def linear_movement (x = 1, moves = [], &direction)
+      move = yield (x)
+      if on_board?(move) && (capture?(move) || empty?(move)) && (moves[-1] == nil || !capture?(moves[-1]))
+        moves << move
+        linear_movement( x + 1, moves, &direction)
+      else
+        moves
+      end
+    end
+
   end
 end

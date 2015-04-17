@@ -12,8 +12,8 @@ module ConsoleChess
       welcome
       loop do
         print_board
-        get_move(take_turn)
-        # add logit to commit move; must pass game board to piece to generate new available moves array
+        get_move(@turn)
+        # add logic to commit move; must pass game board to piece to generate new available moves array
         break if @board.winner?
         take_turn
       end

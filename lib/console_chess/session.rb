@@ -13,19 +13,15 @@ module ConsoleChess
       loop do
         print_board
         get_move(@turn)
-        # add logic to commit move; must pass game board to piece to generate new available moves array
+        # add logic to commit move
         break if @board.winner?
         take_turn
       end
     end
 
-    def welcome
-      @printer.print("Welcome to ConsoleChess!")
-    end
+    def welcome; @printer.print("Welcome to ConsoleChess!"); end
 
-    def print_board
-      @printer.print(@board.print_board)
-    end
+    def print_board; @printer.print(@board.print_board); end
 
     def get_move(turn)
       print_turn
@@ -37,18 +33,13 @@ module ConsoleChess
       move
     end
 
-    def print_turn
-      @printer.print("#{take_turn}'s turn:")
-    end
+    def print_turn; @printer.print("#{take_turn}'s turn:"); end
 
     def valid_move?(move)
       start = move.split(" ")[0]
       target = move.split(" ")[2]
 
-      if valid_format?(start, target, move) && 
-        @board.piece_in_place?(start) && 
-        @board.piece_in_place?(target) && 
-        @board.legal_move?(start, target)
+      if valid_format?(start, target, move) && @board.piece_in_place?(start) && @board.piece_in_place?(target) && @board.legal_move?(start, target)
         true
       else
         false
@@ -61,20 +52,13 @@ module ConsoleChess
       "#{start} to #{target}" == move ? true : false
     end
 
-    def valid_start_call_sign?(call_sign)
-      call_sign =~ /[PpRrNnBbQqKk][a-h][1-8]/
-    end
+    def valid_start_call_sign? (call_sign); call_sign =~ /[PpRrNnBbQqKk][a-h][1-8]/ ? true : false; end
 
-    def valid_target_call_sign?(call_sign)
-      call_sign =~ /[_PpRrNnBbQqKk][a-h][1-8]/
-    end
+    def valid_target_call_sign? (call_sign); call_sign =~ /[_PpRrNnBbQqKk][a-h][1-8]/ ? true : false; end
 
-    def invalid_move
-      @printer.print("Not a valid move")
-    end
+    def invalid_move; @printer.print("Not a valid move"); end
 
-    def take_turn
-      @turn == "White" ? @turn = "Black" : @turn = "White"
-    end
+    def take_turn; @turn == "White" ? @turn = "Black" : @turn = "White"; end
+
   end
 end

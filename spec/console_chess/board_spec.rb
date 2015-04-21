@@ -14,78 +14,39 @@ module ConsoleChess
     end
 
     it "properly initializes pieces" do
-      expect(board.game_board[0].call_sign).to eq("ra8")
-      expect(board.game_board[1].call_sign).to eq("nb8")
-      expect(board.game_board[2].call_sign).to eq("bc8")
-      expect(board.game_board[3].call_sign).to eq("qd8")
-      expect(board.game_board[4].call_sign).to eq("ke8")
-      expect(board.game_board[5].call_sign).to eq("bf8")
-      expect(board.game_board[6].call_sign).to eq("ng8")
-      expect(board.game_board[7].call_sign).to eq("rh8")
-      expect(board.game_board[8].call_sign).to eq("pa7")
-      expect(board.game_board[9].call_sign).to eq("pb7")
-      expect(board.game_board[10].call_sign).to eq("pc7")
-      expect(board.game_board[11].call_sign).to eq("pd7")
-      expect(board.game_board[12].call_sign).to eq("pe7")
-      expect(board.game_board[13].call_sign).to eq("pf7")
-      expect(board.game_board[14].call_sign).to eq("pg7")
-      expect(board.game_board[15].call_sign).to eq("ph7")
-      expect(board.game_board[16].call_sign).to eq("_a6")
-      expect(board.game_board[17].call_sign).to eq("_b6")
-      expect(board.game_board[18].call_sign).to eq("_c6")
-      expect(board.game_board[19].call_sign).to eq("_d6")
-      expect(board.game_board[20].call_sign).to eq("_e6")
-      expect(board.game_board[21].call_sign).to eq("_f6")
-      expect(board.game_board[22].call_sign).to eq("_g6")
-      expect(board.game_board[23].call_sign).to eq("_h6")
-      expect(board.game_board[24].call_sign).to eq("_a5")
-      expect(board.game_board[25].call_sign).to eq("_b5")
-      expect(board.game_board[26].call_sign).to eq("_c5")
-      expect(board.game_board[27].call_sign).to eq("_d5")
-      expect(board.game_board[28].call_sign).to eq("_e5")
-      expect(board.game_board[29].call_sign).to eq("_f5")
-      expect(board.game_board[30].call_sign).to eq("_g5")
-      expect(board.game_board[31].call_sign).to eq("_h5")
-      expect(board.game_board[32].call_sign).to eq("_a4")
-      expect(board.game_board[33].call_sign).to eq("_b4")
-      expect(board.game_board[34].call_sign).to eq("_c4")
-      expect(board.game_board[35].call_sign).to eq("_d4")
-      expect(board.game_board[36].call_sign).to eq("_e4")
-      expect(board.game_board[37].call_sign).to eq("_f4")
-      expect(board.game_board[38].call_sign).to eq("_g4")
-      expect(board.game_board[39].call_sign).to eq("_h4")
-      expect(board.game_board[40].call_sign).to eq("_a3")
-      expect(board.game_board[41].call_sign).to eq("_b3")
-      expect(board.game_board[42].call_sign).to eq("_c3")
-      expect(board.game_board[43].call_sign).to eq("_d3")
-      expect(board.game_board[44].call_sign).to eq("_e3")
-      expect(board.game_board[45].call_sign).to eq("_f3")
-      expect(board.game_board[46].call_sign).to eq("_g3")
-      expect(board.game_board[47].call_sign).to eq("_h3")
-      expect(board.game_board[48].call_sign).to eq("Pa2")
-      expect(board.game_board[49].call_sign).to eq("Pb2")
-      expect(board.game_board[50].call_sign).to eq("Pc2")
-      expect(board.game_board[51].call_sign).to eq("Pd2")
-      expect(board.game_board[52].call_sign).to eq("Pe2")
-      expect(board.game_board[53].call_sign).to eq("Pf2")
-      expect(board.game_board[54].call_sign).to eq("Pg2")
-      expect(board.game_board[55].call_sign).to eq("Ph2")
-      expect(board.game_board[56].call_sign).to eq("Ra1")
-      expect(board.game_board[57].call_sign).to eq("Nb1")
-      expect(board.game_board[58].call_sign).to eq("Bc1")
-      expect(board.game_board[59].call_sign).to eq("Qd1")
-      expect(board.game_board[60].call_sign).to eq("Ke1")
-      expect(board.game_board[61].call_sign).to eq("Bf1")
-      expect(board.game_board[62].call_sign).to eq("Ng1")
-      expect(board.game_board[63].call_sign).to eq("Rh1")
+      pieces_on_board = [[0, "ra8"], [1, "nb8"], [2, "bc8"], [3, "qd8"], [4, "ke8"], [5, "bf8"], [6, "ng8"], 
+      [7, "rh8"], [8, "pa7"], [9, "pb7"], [10, "pc7"], [11, "pd7"], [12, "pe7"], [13, "pf7"], 
+      [14, "pg7"], [15, "ph7"], [16, "_a6"], [17, "_b6"], [18, "_c6"], [19, "_d6"], [20, "_e6"], 
+      [21, "_f6"], [22, "_g6"], [23, "_h6"], [24, "_a5"], [25, "_b5"], [26, "_c5"], [27, "_d5"], 
+      [28, "_e5"], [29, "_f5"], [30, "_g5"], [31, "_h5"], [32, "_a4"], [33, "_b4"], [34, "_c4"],
+      [35, "_d4"], [36, "_e4"], [37, "_f4"], [38, "_g4"], [39, "_h4"], [40, "_a3"], [41, "_b3"], 
+      [42, "_c3"], [43, "_d3"], [44, "_e3"], [45, "_f3"], [46, "_g3"], [47, "_h3"], [48, "Pa2"],
+      [49, "Pb2"], [50, "Pc2"], [51, "Pd2"], [52, "Pe2"], [53, "Pf2"], [54, "Pg2"], [55, "Ph2"],
+      [56 ,"Ra1"], [57, "Nb1"], [58, "Bc1"], [59, "Qd1"], [60, "Ke1"], [61, "Bf1"], [62, "Ng1"], 
+      [63, "Rh1"]]
+      pieces_on_board.each do |x, y|
+        expect(board.game_board[x].call_sign).to eq(y)
+      end
     end
 
     it "knows when a piece is in a given place" do
-      expect(board.piece_in_place?("Pa2")).to eql(true)
+      pieces = ["Pa2", "Pb2", "Qd1", "_h3", "ra8"]
+      pieces.each do |x|
+        expect(board.piece_in_place?(x)).to eql(true)
+      end
     end
 
     it "knows when a piece is not in a given place" do
-      expect(board.piece_in_place?("Pa3")).to eql(false)
+     pieces = ["Pa3", "Pb7", "Qd8", "_h1", "ra1"]
+      pieces.each do |x|
+        expect(board.piece_in_place?(x)).to eql(false)
+      end
+    end
+
+    it "knows when a piece can make a given move" do
+      expect(board.legal_move?("Pa2", "_a3")).to eql(true)
+      expect(board.legal_move?("Pa2", "_a4")).to eql(true)
+      expect(board.legal_move?("Pa2", "_b4")).to eql(false)
     end
 
   end

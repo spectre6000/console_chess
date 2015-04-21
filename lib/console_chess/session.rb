@@ -5,7 +5,7 @@ module ConsoleChess
       @printer = printer
       @reader = reader
       @board = board
-      @turn = "Black"
+      @turn = "White"
     end
 
     def play
@@ -33,28 +33,38 @@ module ConsoleChess
       move
     end
 
-    def print_turn; @printer.print("#{take_turn}'s turn:"); end
+    def print_turn; @printer.print("#{@turn}'s turn:"); end
 
     def valid_move?(move)
       start = move.split(" ")[0]
       target = move.split(" ")[2]
-
-      if valid_format?(start, target, move) && @board.piece_in_place?(start) && @board.piece_in_place?(target) && @board.legal_move?(start, target)
+      
+      if valid_entry?(move, start, target) && 
+        @board.piece_in_place?(start) && 
+        @board.piece_in_place?(target) && 
+        @board.legal_move?(start, target)
         true
       else
         false
       end
     end
 
-    def valid_format?(start, target, move)
-      valid_start_call_sign?(start) && 
-      valid_target_call_sign?(target) && 
-      "#{start} to #{target}" == move ? true : false
+    def valid_entry?(move, start, target)
+
+      if valid_start_call_sign?(start) && 
+        valid_target_call_sign?(target) && 
+        valid_format?(move, start, target)
+        true
+      else
+        false
+      end
     end
 
-    def valid_start_call_sign? (call_sign); call_sign =~ /[PpRrNnBbQqKk][a-h][1-8]/ ? true : false; end
+    def valid_start_call_sign?(call_sign); call_sign =~ /[PpRrNnBbQqKk][a-h][1-8]/ ? true : false; end
 
-    def valid_target_call_sign? (call_sign); call_sign =~ /[_PpRrNnBbQqKk][a-h][1-8]/ ? true : false; end
+    def valid_target_call_sign?(call_sign); call_sign =~ /[_PpRrNnBbQqKk][a-h][1-8]/ ? true : false; end
+
+    def valid_format?(move, start, target); move == "#{start} to #{target}" ? true : false; end
 
     def invalid_move; @printer.print("Not a valid move"); end
 

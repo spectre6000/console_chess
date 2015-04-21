@@ -38,10 +38,10 @@ module ConsoleChess
     end 
 
     it "takes turns" do
-      expect(session.take_turn).to eql("White")
       expect(session.take_turn).to eql("Black")
       expect(session.take_turn).to eql("White")
       expect(session.take_turn).to eql("Black")
+      expect(session.take_turn).to eql("White")
     end
 
     it "prompts a user for a move" do
@@ -74,7 +74,7 @@ module ConsoleChess
     end
 
     it "recognizes a valid format" do
-      expect(session.valid_format?("Pa2", "_a3", "Pa2 to _a3")).to eql(true)
+      expect(session.valid_format?("Pa2 to _a3", "Pa2", "_a3")).to eql(true)
     end
 
     it "recognizes a valid move" do

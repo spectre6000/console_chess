@@ -7,7 +7,8 @@ module ConsoleChess
       @column = column
       @row = row
       @color = color
-      @board = board
+      # @board = board
+      @game_board = board.game_board
 
       @token = "_"
       set_token
@@ -18,7 +19,7 @@ module ConsoleChess
       @move_count = 0
     end
 
-    def get_board; @game_board = @board.game_board; end
+    # def get_board; @game_board = @board.game_board; end
 
     def set_token; @token = "_"; end
 

@@ -7,6 +7,7 @@ module ConsoleChess
       reader = Reader.new(fake_stdin)
       reader.read
       expect(fake_stdin).to have_received(:gets)
+      expect(fake_stdin).to have_received(:chomp)
     end
   end
 end

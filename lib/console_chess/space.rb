@@ -7,8 +7,7 @@ module ConsoleChess
       @column = column
       @row = row
       @color = color
-      # @board = board
-      @game_board = board.game_board
+      @board = board
 
       @token = "_"
       set_token
@@ -19,15 +18,13 @@ module ConsoleChess
       @move_count = 0
     end
 
-    # def get_board; @game_board = @board.game_board; end
-
     def set_token; @token = "_"; end
 
     def unmoved?; true if @move_count == 0; end
 
     def white?; @color == "White" ? true : false; end
 
-    def get_space(space); @game_board.find { |piece| piece.position == space}; end
+    def get_space(space); @board.game_board.find { |piece| piece.position == space}; end
 
     def available_move?(target)
       populate_available_moves

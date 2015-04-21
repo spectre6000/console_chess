@@ -25,10 +25,10 @@ module ConsoleChess
 
     def get_move(turn)
       print_turn
-      move = @reader.read
+      move = @reader.read.chomp
       until valid_move?(move)
         invalid_move
-        move = @reader.read
+        move = @reader.read.chomp
       end
       move
     end

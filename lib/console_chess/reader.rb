@@ -5,7 +5,7 @@ module ConsoleChess
     end
 
     def read
-      @input.gets.chomp
+      @input.gets
     end
   end
 end

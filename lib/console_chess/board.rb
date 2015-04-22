@@ -6,6 +6,7 @@ module ConsoleChess
     def initialize
       @game_board
       new_board
+      @captured_pieces
     end
 
     def new_board
@@ -25,12 +26,13 @@ module ConsoleChess
     end
 
     def print_board
-      "   a b c d e f g h\n8 |#{@game_board[0].token}|#{@game_board[1].token}|#{@game_board[2].token}|#{@game_board[3].token}|#{@game_board[4].token}|#{@game_board[5].token}|#{@game_board[6].token}|#{@game_board[7].token}| 8\n7 |#{@game_board[8].token}|#{@game_board[9].token}|#{@game_board[10].token}|#{@game_board[11].token}|#{@game_board[12].token}|#{@game_board[13].token}|#{@game_board[14].token}|#{@game_board[15].token}| 7\n6 |#{@game_board[16].token}|#{@game_board[17].token}|#{@game_board[18].token}|#{@game_board[19].token}|#{@game_board[20].token}|#{@game_board[21].token}|#{@game_board[22].token}|#{@game_board[23].token}| 6\n5 |#{@game_board[24].token}|#{@game_board[25].token}|#{@game_board[26].token}|#{@game_board[27].token}|#{@game_board[28].token}|#{@game_board[29].token}|#{@game_board[30].token}|#{@game_board[31].token}| 5\n4 |#{@game_board[32].token}|#{@game_board[33].token}|#{@game_board[34].token}|#{@game_board[35].token}|#{@game_board[36].token}|#{@game_board[37].token}|#{@game_board[38].token}|#{@game_board[39].token}| 4\n3 |#{@game_board[40].token}|#{@game_board[41].token}|#{@game_board[42].token}|#{@game_board[43].token}|#{@game_board[44].token}|#{@game_board[45].token}|#{@game_board[46].token}|#{@game_board[47].token}| 3\n2 |#{@game_board[48].token}|#{@game_board[49].token}|#{@game_board[50].token}|#{@game_board[51].token}|#{@game_board[52].token}|#{@game_board[53].token}|#{@game_board[54].token}|#{@game_board[55].token}| 2\n1 |#{@game_board[56].token}|#{@game_board[57].token}|#{@game_board[58].token}|#{@game_board[59].token}|#{@game_board[60].token}|#{@game_board[61].token}|#{@game_board[62].token}|#{@game_board[63].token}| 1\n   a b c d e f g h"
+      "   a b c d e f g h\n8 |#{get_piece_in_position("a8").token}|#{get_piece_in_position("b8").token}|#{get_piece_in_position("c8").token}|#{get_piece_in_position("d8").token}|#{get_piece_in_position("e8").token}|#{get_piece_in_position("f8").token}|#{get_piece_in_position("g8").token}|#{get_piece_in_position("h8").token}| 8\n7 |#{get_piece_in_position("a7").token}|#{get_piece_in_position("b7").token}|#{get_piece_in_position("c7").token}|#{get_piece_in_position("d7").token}|#{get_piece_in_position("e7").token}|#{get_piece_in_position("f7").token}|#{get_piece_in_position("g7").token}|#{get_piece_in_position("h7").token}| 7\n6 |#{get_piece_in_position("a6").token}|#{get_piece_in_position("b6").token}|#{get_piece_in_position("c6").token}|#{get_piece_in_position("d6").token}|#{get_piece_in_position("e6").token}|#{get_piece_in_position("f6").token}|#{get_piece_in_position("g6").token}|#{get_piece_in_position("h6").token}| 6\n5 |#{get_piece_in_position("a5").token}|#{get_piece_in_position("b5").token}|#{get_piece_in_position("c5").token}|#{get_piece_in_position("d5").token}|#{get_piece_in_position("e5").token}|#{get_piece_in_position("f5").token}|#{get_piece_in_position("g5").token}|#{get_piece_in_position("h5").token}| 5\n4 |#{get_piece_in_position("a4").token}|#{get_piece_in_position("b4").token}|#{get_piece_in_position("c4").token}|#{get_piece_in_position("d4").token}|#{get_piece_in_position("e4").token}|#{get_piece_in_position("f4").token}|#{get_piece_in_position("g4").token}|#{get_piece_in_position("h4").token}| 4\n3 |#{get_piece_in_position("a3").token}|#{get_piece_in_position("b3").token}|#{get_piece_in_position("c3").token}|#{get_piece_in_position("d3").token}|#{get_piece_in_position("e3").token}|#{get_piece_in_position("f3").token}|#{get_piece_in_position("g3").token}|#{get_piece_in_position("h3").token}| 3\n2 |#{get_piece_in_position("a2").token}|#{get_piece_in_position("b2").token}|#{get_piece_in_position("c2").token}|#{get_piece_in_position("d2").token}|#{get_piece_in_position("e2").token}|#{get_piece_in_position("f2").token}|#{get_piece_in_position("g2").token}|#{get_piece_in_position("h2").token}| 2\n1 |#{get_piece_in_position("a1").token}|#{get_piece_in_position("b1").token}|#{get_piece_in_position("c1").token}|#{get_piece_in_position("d1").token}|#{get_piece_in_position("e1").token}|#{get_piece_in_position("f1").token}|#{get_piece_in_position("g1").token}|#{get_piece_in_position("h1").token}| 1\n   a b c d e f g h"
     end
 
     def winner?
       #this will need logic to determine whether or not anyone has won
-      true
+      # true
+      false
     end
 
     def piece_in_place?(piece)
@@ -38,7 +40,44 @@ module ConsoleChess
     end
 
     def legal_move?(start, target)
-      (@game_board.find { |piece| piece.call_sign == start}).available_move?(target) ? true : false
+      get_piece(start).populate_available_moves
+      get_piece(start).available_move?(target) ? true : false
+    end
+
+    def commit_move(move)
+      start = move.split(" ")[0]
+      target = move.split(" ")[2]
+      from = get_piece(start).position
+      to = get_piece(target).position
+
+      if target[0] == "_"
+        get_piece(start).commit_move(to)
+        get_piece(target).commit_move(from)
+      elsif false#castling
+      elsif (start.token == "p" || start.token == "P") && 
+      start.move_count ==0 && 
+      (start.available_moves.index(to) == -1 || start.available_moves.index(to) == -2)#en passant
+        get_piece(start).commit_move(to)
+        if start.token == "p"
+          target[1] = "6"
+        else
+          target[1] = "3"
+        end
+        @game_board << ConsoleChess::Space.new(from[0], from[1], "_", self)
+        get_piece(target).commit_move("__")
+      else #capture
+        get_piece(start).commit_move(to)
+        get_piece(target).commit_move("__")
+        @game_board << ConsoleChess::Space.new(from[0], from[1], "_", self)
+      end
+    end
+
+    def get_piece(call_sign)
+      @game_board.find { |piece| piece.call_sign == call_sign}
+    end
+
+    def get_piece_in_position(position)
+      @game_board.find { |piece| piece.position == position}
     end
 
   end

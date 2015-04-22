@@ -46,5 +46,24 @@ module ConsoleChess
       spec_array.each { |x, y, z| expect(board.legal_move?(x, y)).to eql(z) }
     end
 
+    it "commits moves to open spaces" do
+      ["Pa2", "_a3"].each {|x| expect(board.piece_in_place?(x)).to eql(true)}
+      board.commit_move("Pa2 to _a3")
+      ["_a2", "Pa3"].each {|x| expect(board.piece_in_place?(x)).to eql(true)}
+    end
+
+    it "commits moves with capture" do
+      ["Pa2", "pb7"].each {|x| expect(board.piece_in_place?(x)).to eql(true)}
+
+      ["Pa2 to _a4", "pb7 to _b5", "Pa4 to pb5"].each{|x| board.commit_move(x)}
+
+      ["p__", "Pb5", "_a4"].each {|x| expect(board.piece_in_place?(x)).to eql(true)}
+    end
+
+    it "handles en passant capture" do
+      ["Pa2 to _a3", "pb7 to _b5", "Pa3 to _a4", "pb5 to _b4", "Pa4 to _a5", "pb4 to _b3", "Pc2 to _b4"].each{|x| board.commit_move(x)}
+      ["p__", "Pb4", "_b3"].each {|x| expect(board.piece_in_place?(x)).to eql(true)}
+    end
+
   end
 end

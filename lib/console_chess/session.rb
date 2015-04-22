@@ -12,8 +12,8 @@ module ConsoleChess
       welcome
       loop do
         print_board
-        get_move(@turn)
-        # add logic to commit move
+        move = get_move(@turn)
+        @board.commit_move(move)
         break if @board.winner?
         take_turn
       end
@@ -50,7 +50,6 @@ module ConsoleChess
     end
 
     def valid_entry?(move, start, target)
-
       if valid_start_call_sign?(start) && 
         valid_target_call_sign?(target) && 
         valid_format?(move, start, target)

@@ -20,6 +20,13 @@ module ConsoleChess
 
     def set_token; @token = "_"; end
 
+    def commit_move(position)
+      @position = position
+      @column = position[0]
+      @row = position[1]
+      @call_sign = "#{@token}#{@position}"
+    end
+
     def unmoved?; true if @move_count == 0; end
 
     def white?; @color == "White" ? true : false; end
@@ -27,7 +34,7 @@ module ConsoleChess
     def get_space(space); @board.game_board.find { |piece| piece.position == space}; end
 
     def available_move?(target)
-      populate_available_moves
+      # populate_available_moves
       @available_moves.include?(target[1..2])
     end
 

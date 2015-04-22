@@ -2,27 +2,31 @@ require "spec_helper"
 
 module ConsoleChess
   describe Queen do
+    pieces_setup_array = [[:wqueen, "d", "1", "White"], [:bqueen, "d", "8", "Black"],
+    [:mqueen, "e", "4", "Black"]]
+
     let (:board) {Board.new}
-    let (:wqueen) {Queen.new("d", "1", "White", board)}
-    let (:bqueen) {Queen.new("d", "8", "Black", board)}
-    let (:mqueen) {Queen.new("e", "4", "Black", board)}
+    pieces_setup_array.each {|x, y, z, a| let (x) {Queen.new(y, z, a, board)}}
 
     it "initializes with the correct 'color'" do
-      expect(wqueen.token).to eql("Q")
-      expect(bqueen.token).to eql("q")
+      spec_array = [[wqueen, "Q"], [bqueen, "q"]]
+      
+      spec_array.each {|x, y| expect(x.token).to eql(y)}
     end
 
     it "initializes with the correct position" do
-      expect(wqueen.position).to eql("d1")
-      expect(bqueen.position).to eql("d8")
+      spec_array = [[wqueen, "d1"], [bqueen, "d8"]]
+      
+      spec_array.each {|x, y| expect(x.position).to eql(y)}
     end
 
     it "starts with the correct collection of available moves" do
-      wqueen.populate_available_moves
-      bqueen.populate_available_moves
-
-      expect(wqueen.available_moves).to eql([])
-      expect(bqueen.available_moves).to eql([])
+      spec_array = [wqueen, bqueen]
+      
+      spec_array.each do |x| 
+        x.populate_available_moves
+        expect(x.available_moves).to eql([])
+      end
     end
 
     it "populates the correct collection of moves after start" do

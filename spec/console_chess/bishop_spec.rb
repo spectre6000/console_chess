@@ -2,27 +2,31 @@ require "spec_helper"
 
 module ConsoleChess
   describe Bishop do
+    pieces_setup_array = [[:wbishop, "f", "1", "White"], 
+    [:bbishop, "c", "8", "Black"], [:mbishop, "e", "4", "Black"]]
+    
     let (:board) {Board.new}
-    let (:wbishop) {Bishop.new("f", "1", "White", board)}
-    let (:bbishop) {Bishop.new("c", "8", "Black", board)}
-    let (:mbishop) {Bishop.new("e", "4", "Black", board)}
+    pieces_setup_array.each {|x, y, z, a| let (x) {Bishop.new(y, z, a, board)}}
 
     it "initializes with the correct 'color'" do
-      expect(wbishop.token).to eql("B")
-      expect(bbishop.token).to eql("b")
+      spec_array = [[wbishop, "B"], [bbishop, "b"]]
+
+      spec_array.each { |x, y| expect(x.token).to eql(y) }
     end
 
     it "initializes with the correct position" do
-      expect(wbishop.position).to eql("f1")
-      expect(bbishop.position).to eql("c8")
+      spec_array = [[wbishop, "f1"], [bbishop, "c8"]]
+      
+      spec_array.each { |x, y| expect(x.position).to eql(y)}
     end
 
     it "starts with the correct collection of available moves" do
-      wbishop.populate_available_moves
-      bbishop.populate_available_moves
+      spec_array = [wbishop, bbishop]
 
-      expect(wbishop.available_moves).to eql([])
-      expect(bbishop.available_moves).to eql([])
+      spec_array.each do |x| 
+        x.populate_available_moves
+        expect(x.available_moves).to eql([])
+      end
     end
     
     it "populates the correct collection of moves after start" do

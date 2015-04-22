@@ -2,58 +2,53 @@ require "spec_helper"
 
 module ConsoleChess
   describe King do
+    pieces_setup_array = [[:wking, "e", "1", "White"], [:bking, "e", "8", "Black"],
+    [:wkingii, "e", "4", "White"], [:bkingii, "e", "5", "Black"]]
     let (:board) {Board.new}
-    let (:wking) {King.new("e", "1", "White", board)}
-    let (:bking) {King.new("e", "8", "Black", board)}
-    let (:wkingii) {King.new("e", "4", "White", board)}
-    let (:bkingii) {King.new("e", "5", "Black", board)}
+
+    pieces_setup_array.each {|x, y, z, a| let (x) {King.new(y, z, a, board)}}
 
     it "initializes with the correct 'color'" do
-      expect(wking.token).to eql("K")
-      expect(bking.token).to eql("k")
+      spec_array = [[wking, "K"], [bking, "k"]]
+
+      spec_array.each {|x, y| expect(x.token).to eql(y)}
     end
 
     it "initializes with the correct position" do
-      expect(wking.position).to eql("e1")
-      expect(bking.position).to eql("e8")
+      spec_array = [[wking, "e1"], [bking, "e8"]]
+
+      spec_array.each {|x, y| expect(x.position).to eql(y)}
     end
 
     it "populates the correct collection of initial available moves" do
-      wkingii.populate_available_moves
-      bkingii.populate_available_moves
-      wking.populate_available_moves
-      bking.populate_available_moves
+      spec_array = [[wkingii, ["d5", "d4", "d3", "e5", "e3", "f5", "f4", "f3"]],
+      [bkingii, ["d4", "d5", "d6", "e4", "e6", "f4", "f5", "f6"]],
+      [wking, []], [bking, []]]
 
-      expect(wkingii.available_moves).to eql(["d5", "d4", "d3", "e5", "e3", "f5",  "f4", "f3"])
-      expect(bkingii.available_moves).to eql(["d4", "d5", "d6", "e4", "e6", "f4", "f5", "f6"])
-      expect(wking.available_moves).to eql([])
-      expect(bking.available_moves).to eql([])
+      spec_array.each do |x, y|
+        x.populate_available_moves
+        expect(x.available_moves).to eql(y)
+      end
     end
 
     it "correctly determines whether or not a target move is available" do
-      expect(wkingii.available_move?("Kd5")).to eql(true)
-      expect(wkingii.available_move?("Kd2")).to eql(false)
-      expect(bkingii.available_move?("kd5")).to eql(true)
-      expect(bkingii.available_move?("kd2")).to eql(false)
+      spec_array = [[wkingii, "Kd5", true], [wkingii, "Kd2", false], 
+      [bkingii, "kd5", true], [bkingii, "kd2", false]]
+      
+      spec_array.each {|x, y, z| expect(x.available_move?(y)).to eql(z)}
     end
 
     it "castles" do
       [1, 2, 3, 5, 6, -2, -3, -5, -6, -7].each do |x|
         board.game_board[x].instance_variable_set(:@token, "_")
       end
+      spec_array = [[wking, ["d1", "f1", "c1", "g1"]], [bking, ["d8", "f8", "c8", "g8"]]]
       
-      wking.populate_available_moves
-      bking.populate_available_moves
-
-      expect(wking.available_moves).to eql(["d1", "f1", "c1", "g1"])
-      expect(bking.available_moves).to eql(["d8", "f8", "c8", "g8"])
+      spec_array.each do |x, y|
+        x.populate_available_moves
+        expect(x.available_moves).to eql(y)
+      end
     end
 
   end
 end
-
-
-
-
-
-

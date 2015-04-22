@@ -2,27 +2,31 @@ require "spec_helper"
 
 module ConsoleChess
   describe Rook do
+    pieces_setup_array = [[:wrook, "h", "1", "White"], 
+    [:brook, "a", "8", "Black"], [:mrook, "e", "4", "Black"]]
+
     let (:board) {Board.new}
-    let (:wrook) {Rook.new("h", "1", "White", board)}
-    let (:brook) {Rook.new("a", "8", "Black", board)}
-    let (:mrook) {Rook.new("e", "4", "Black", board)}
+    pieces_setup_array.each {|x, y, z, a| let (x) {Rook.new(y, z, a, board)}}
 
     it "initializes with the correct 'color'" do
-      expect(wrook.token).to eql("R")
-      expect(brook.token).to eql("r")
+      spec_array = [[wrook, "R"], [brook, "r"]]
+      
+      spec_array.each {|x, y| expect(x.token).to eql(y)}
     end
 
     it "initializes with the correct position" do
-      expect(wrook.position).to eql("h1")
-      expect(brook.position).to eql("a8")
+      spec_array = [[wrook, "h1"], [brook, "a8"]]
+
+      spec_array.each {|x, y| expect(x.position).to eql(y)}
     end
 
     it "starts with the correct collection of available moves" do
-      wrook.populate_available_moves
-      brook.populate_available_moves
+      spec_array = [wrook, brook]
 
-      expect(wrook.available_moves).to eql([])
-      expect(brook.available_moves).to eql([])
+      spec_array.each do |x| 
+        x.populate_available_moves
+        expect(x.available_moves).to eql([])
+      end
     end
 
     it "populates the correct collection of moves after start" do

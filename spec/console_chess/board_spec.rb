@@ -14,39 +14,36 @@ module ConsoleChess
     end
 
     it "properly initializes pieces" do
-      pieces_on_board = [[0, "ra8"], [1, "nb8"], [2, "bc8"], [3, "qd8"], [4, "ke8"], [5, "bf8"], [6, "ng8"], 
-      [7, "rh8"], [8, "pa7"], [9, "pb7"], [10, "pc7"], [11, "pd7"], [12, "pe7"], [13, "pf7"], 
-      [14, "pg7"], [15, "ph7"], [16, "_a6"], [17, "_b6"], [18, "_c6"], [19, "_d6"], [20, "_e6"], 
-      [21, "_f6"], [22, "_g6"], [23, "_h6"], [24, "_a5"], [25, "_b5"], [26, "_c5"], [27, "_d5"], 
-      [28, "_e5"], [29, "_f5"], [30, "_g5"], [31, "_h5"], [32, "_a4"], [33, "_b4"], [34, "_c4"],
-      [35, "_d4"], [36, "_e4"], [37, "_f4"], [38, "_g4"], [39, "_h4"], [40, "_a3"], [41, "_b3"], 
-      [42, "_c3"], [43, "_d3"], [44, "_e3"], [45, "_f3"], [46, "_g3"], [47, "_h3"], [48, "Pa2"],
-      [49, "Pb2"], [50, "Pc2"], [51, "Pd2"], [52, "Pe2"], [53, "Pf2"], [54, "Pg2"], [55, "Ph2"],
-      [56 ,"Ra1"], [57, "Nb1"], [58, "Bc1"], [59, "Qd1"], [60, "Ke1"], [61, "Bf1"], [62, "Ng1"], 
-      [63, "Rh1"]]
-      pieces_on_board.each do |x, y|
-        expect(board.game_board[x].call_sign).to eq(y)
-      end
+      spec_array = [[0, "ra8"], [1, "nb8"], [2, "bc8"], [3, "qd8"], [4, "ke8"], [5, "bf8"], 
+      [6, "ng8"], [7, "rh8"], [8, "pa7"], [9, "pb7"], [10, "pc7"], [11, "pd7"], [12, "pe7"], 
+      [13, "pf7"], [14, "pg7"], [15, "ph7"], [16, "_a6"], [17, "_b6"], [18, "_c6"], [19, "_d6"], 
+      [20, "_e6"], [21, "_f6"], [22, "_g6"], [23, "_h6"], [24, "_a5"], [25, "_b5"], [26, "_c5"], 
+      [27, "_d5"], [28, "_e5"], [29, "_f5"], [30, "_g5"], [31, "_h5"], [32, "_a4"], [33, "_b4"], 
+      [34, "_c4"], [35, "_d4"], [36, "_e4"], [37, "_f4"], [38, "_g4"], [39, "_h4"], [40, "_a3"], 
+      [41, "_b3"], [42, "_c3"], [43, "_d3"], [44, "_e3"], [45, "_f3"], [46, "_g3"], [47, "_h3"], 
+      [48, "Pa2"], [49, "Pb2"], [50, "Pc2"], [51, "Pd2"], [52, "Pe2"], [53, "Pf2"], [54, "Pg2"], 
+      [55, "Ph2"], [56 ,"Ra1"], [57, "Nb1"], [58, "Bc1"], [59, "Qd1"], [60, "Ke1"], [61, "Bf1"], 
+      [62, "Ng1"], [63, "Rh1"]]
+
+      spec_array.each {|x, y| expect(board.game_board[x].call_sign).to eq(y)}
     end
 
     it "knows when a piece is in a given place" do
-      pieces = ["Pa2", "Pb2", "Qd1", "_h3", "ra8"]
-      pieces.each do |x|
-        expect(board.piece_in_place?(x)).to eql(true)
-      end
+      spec_array = ["Pa2", "Pb2", "Qd1", "_h3", "ra8"]
+
+      spec_array.each {|x| expect(board.piece_in_place?(x)).to eql(true)}
     end
 
     it "knows when a piece is not in a given place" do
-     pieces = ["Pa3", "Pb7", "Qd8", "_h1", "ra1"]
-      pieces.each do |x|
-        expect(board.piece_in_place?(x)).to eql(false)
-      end
+      spec_array = ["Pa3", "Pb7", "Qd8", "_h1", "ra1"]
+      
+      spec_array.each {|x| expect(board.piece_in_place?(x)).to eql(false)}
     end
 
     it "knows when a piece can make a given move" do
-      expect(board.legal_move?("Pa2", "_a3")).to eql(true)
-      expect(board.legal_move?("Pa2", "_a4")).to eql(true)
-      expect(board.legal_move?("Pa2", "_b4")).to eql(false)
+      spec_array = [ ["Pa2", "_a3", true], ["Pa2", "_a4", true], ["Pa2", "_b4", false]]
+      
+      spec_array.each { |x, y, z| expect(board.legal_move?(x, y)).to eql(z) }
     end
 
   end

@@ -40,7 +40,6 @@ module ConsoleChess
     end
 
     def legal_move?(start, target)
-      get_piece(start).populate_available_moves
       get_piece(start).available_move?(target) ? true : false
     end
 
@@ -49,23 +48,20 @@ module ConsoleChess
       target = move.split(" ")[2]
       from = get_piece(start).position
       to = get_piece(target).position
+  
+      if false#castling
 
-      if target[0] == "_"
+      elsif (get_piece(start).token == "p" || get_piece(start).token == "P") &&
+      get_piece(start).move_count == 0 && get_piece(start).available_moves.include?("#{to}EP")
+        start[0] == "p" ? ep_target = "#{to[0]}6" : ep_target = "#{to[0]}3"
         get_piece(start).commit_move(to)
         get_piece(target).commit_move(from)
-      elsif false#castling
-      elsif (start.token == "p" || start.token == "P") && 
-      start.move_count ==0 && 
-      (start.available_moves.index(to) == -1 || start.available_moves.index(to) == -2)#en passant
+        get_piece(get_piece_in_position(ep_target).call_sign).commit_move("__")
+        @game_board <<  ConsoleChess::Space.new(ep_target[0], ep_target[1], "_", self)
+      elsif target[0] == "_" #move to open space
         get_piece(start).commit_move(to)
-        if start.token == "p"
-          target[1] = "6"
-        else
-          target[1] = "3"
-        end
-        @game_board << ConsoleChess::Space.new(from[0], from[1], "_", self)
-        get_piece(target).commit_move("__")
-      else #capture
+        get_piece(target).commit_move(from)
+      else #simple capture
         get_piece(start).commit_move(to)
         get_piece(target).commit_move("__")
         @game_board << ConsoleChess::Space.new(from[0], from[1], "_", self)

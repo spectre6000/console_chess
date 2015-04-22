@@ -5,9 +5,9 @@ module ConsoleChess
     let (:fake_printer) {instance_double(Printer, :print => true)}
     let (:board) {Board.new}
 
-    it "keeps the game going" do
-      expect(board.winner?).to eql(true)
-    end
+    # it "keeps the game going" do
+    #   expect(board.winner?).to eql(true)
+    # end
 
     it "prints the board" do
       expect(board.print_board).to eq("   a b c d e f g h\n8 |r|n|b|q|k|b|n|r| 8\n7 |p|p|p|p|p|p|p|p| 7\n6 |_|_|_|_|_|_|_|_| 6\n5 |_|_|_|_|_|_|_|_| 5\n4 |_|_|_|_|_|_|_|_| 4\n3 |_|_|_|_|_|_|_|_| 3\n2 |P|P|P|P|P|P|P|P| 2\n1 |R|N|B|Q|K|B|N|R| 1\n   a b c d e f g h")
@@ -61,7 +61,14 @@ module ConsoleChess
     end
 
     it "handles en passant capture" do
-      ["Pa2 to _a3", "pb7 to _b5", "Pa3 to _a4", "pb5 to _b4", "Pa4 to _a5", "pb4 to _b3", "Pc2 to _b4"].each{|x| board.commit_move(x)}
+      [["Pa2", "_a3", "Pa2 to _a3"], ["pb7", "_b5", "pb7 to _b5"],
+      ["Pa3", "_a4", "Pa3 to _a4"], ["pb5", "_b4", "pb5 to _b4"], 
+      ["Pa4", "_a5", "Pa4 to _a5"], ["pb4", "_b3", "pb4 to _b3"], 
+      ["Pc2", "_b4", "Pc2 to _b4"]].each do |x, y, z| 
+        board.legal_move?(x, y)
+        board.commit_move(z)
+      end
+
       ["p__", "Pb4", "_b3"].each {|x| expect(board.piece_in_place?(x)).to eql(true)}
     end
 

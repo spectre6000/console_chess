@@ -27,8 +27,8 @@ module ConsoleChess
       #en passant
       en_passant_l = "#{left(1).chr}#{forward(2)}"
       en_passant_r = "#{right(1).chr}#{forward(2)}"
-      @available_moves << en_passant_l if on_board?(en_passant_l) && empty?(up1) && capture?("#{left(1).chr}#{forward(1)}")
-      @available_moves << en_passant_r if on_board?(en_passant_r) && empty?(up1) && capture?("#{right(1).chr}#{forward(1)}")
+      @available_moves << "#{en_passant_l}EP" if on_board?(en_passant_l) && empty?(up1) && capture?("#{left(1).chr}#{forward(1)}")
+      @available_moves << "#{en_passant_r}EP" if on_board?(en_passant_r) && empty?(up1) && capture?("#{right(1).chr}#{forward(1)}")
     end
 
 

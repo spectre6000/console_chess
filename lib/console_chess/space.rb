@@ -25,6 +25,7 @@ module ConsoleChess
       @column = position[0]
       @row = position[1]
       @call_sign = "#{@token}#{@position}"
+      @move_count += 1
     end
 
     def unmoved?; true if @move_count == 0; end
@@ -34,7 +35,7 @@ module ConsoleChess
     def get_space(space); @board.game_board.find { |piece| piece.position == space}; end
 
     def available_move?(target)
-      # populate_available_moves
+      populate_available_moves
       @available_moves.include?(target[1..2])
     end
 

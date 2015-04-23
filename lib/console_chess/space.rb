@@ -36,7 +36,7 @@ module ConsoleChess
 
     def available_move?(target)
       populate_available_moves
-      @available_moves.include?(target[1..2])
+      [target[1..2], "#{target[1..2]}C", "#{target[1..2]}EP"].any? { |x| @available_moves.include?(x)}
     end
 
     def on_board?(position)

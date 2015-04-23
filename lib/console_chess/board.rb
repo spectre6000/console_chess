@@ -40,7 +40,7 @@ module ConsoleChess
     end
 
     def legal_move?(start, target)
-      get_piece(start).available_move?(target) ? true : false
+      get_piece(start).available_move?(target)
     end
 
     def commit_move(move)
@@ -50,40 +50,27 @@ module ConsoleChess
       to = get_piece(target).position
       get_piece(start).populate_available_moves
   
-      if (get_piece(start).token == "k" || get_piece(start).token == "K") &&
-      get_piece(start).move_count == 0 && get_piece(start).available_moves.include?("#{to}C")
+      if king?(start) && unmoved?(start) && special_move_available?(start, to)
         if start[0] == "k" 
           if target[1] == "c" 
-            rook = "ra8" 
-            rook_pos = "d8"
-            space_pos = "a8"
-          else 
-            rook = "rh8"
-            rook_pos = "f8"
-            space_pos = "h8"
+            rook, rook_pos, space_pos = "ra8", "d8", "a8"
+          else
+            rook, rook_pos, space_pos = "rh8", "f8", "h8"
           end
         else
           if target[1] == "c"
-            rook = "Ra1"
-            rook_pos = "d1"
-            space_pos = "a1"
+            rook, rook_pos, space_pos = "Ra1", "d1", "a1"
           else
-            rook = "Rh1"
-            rook_pos = "f1"
-            space_pos = "h1"
+            rook, rook_pos, space_pos = "Rh1", "f1", "h1"
           end
         end
-        get_piece(start).commit_move(to)  #move king
-        get_piece(target).commit_move(from) #replace king with space
-        get_piece(rook).commit_move(rook_pos) #move rook
-        get_piece("_#{rook_pos}").commit_move(space_pos)       #replace rook with space
-
-
-
-      elsif (get_piece(start).token == "p" || get_piece(start).token == "P") &&
-      get_piece(start).move_count == 0 && get_piece(start).available_moves.include?("#{to}EP")
-
+        get_piece(start).commit_move(to)
+        get_piece(target).commit_move(from)
+        get_piece(rook).commit_move(rook_pos)
+        get_piece("_#{rook_pos}").commit_move(space_pos)
+      elsif pawn?(start) && unmoved?(start) && special_move_available?(start, to)
         start[0] == "p" ? ep_target = "#{to[0]}6" : ep_target = "#{to[0]}3"
+
         get_piece(start).commit_move(to)
         get_piece(target).commit_move(from)
         get_piece(get_piece_in_position(ep_target).call_sign).commit_move("__")
@@ -104,6 +91,22 @@ module ConsoleChess
 
     def get_piece_in_position(position)
       @game_board.find { |piece| piece.position == position}
+    end
+
+    def king?(call_sign)
+      ["k", "K"].any?{ |x| get_piece(call_sign).token == x}
+    end
+
+    def pawn?(call_sign)
+      ["p", "P"].any? { |x| get_piece(call_sign).token == x}
+    end
+
+    def unmoved?(call_sign)
+      get_piece(call_sign).move_count == 0 ? true : false
+    end
+
+    def special_move_available?(call_sign, target_position)
+      ["#{target_position}C", "#{target_position}EP"].any? { |x| get_piece(call_sign).available_moves.include?(x) }
     end
 
   end

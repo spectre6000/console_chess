@@ -33,7 +33,5 @@ module ConsoleChess
 
     #add logic that prevents moving into check
 
-    #add logic that commits castle and communicates to/moves rook
-
   end
 end

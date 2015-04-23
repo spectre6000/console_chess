@@ -135,6 +135,16 @@ module ConsoleChess
       expect(fake_printer).to have_received(:print).with("Not a valid move")
     end
 
+    it "accpets en passant capture as valid move" do
+      board = Board.new 
+      sessionii = Session.new(fake_printer, fake_reader, board)
+
+      ["Pa2 to _a3", "pb7 to _b5", "Pa3 to _a4", "pb5 to _b4", "Pa4 to _a5",
+      "pb4 to _b3"].each {|x| board.commit_move(x) }
+      
+      expect(sessionii.valid_move?("Pc2 to _b4")).to eql(true)
+    end
+
     it "returns the user-entered move" do
       print("White's turn:")
       read("Pa2 to _a3")

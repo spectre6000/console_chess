@@ -59,6 +59,8 @@ module ConsoleChess
 
     it "makes sure players can only move their own pieces" do
       [["ph7", false], ["Pa7", true]].each { |x, y| expect(session.correct_player?(x)).to eql(y)}
+      session.take_turn
+      [["Pa7", false], ["ph7", true]].each { |x, y| expect(session.correct_player?(x)).to eql(y)}
     end
 
     it "prompts a user for a move" do

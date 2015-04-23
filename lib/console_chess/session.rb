@@ -11,6 +11,7 @@ module ConsoleChess
     def play
       welcome
       loop do
+        check?
         print_board
         move = get_move(@turn)
         @board.commit_move(move)
@@ -61,7 +62,7 @@ module ConsoleChess
     end
 
     def correct_player?(start)
-      @turn == "White" && start[0].upcase == start[0] ? true : false
+      (@turn == "White" && start[0].upcase == start[0]) || (@turn == "Black" && start[0].downcase == start[0]) ? true : false
     end
 
     def valid_start_call_sign?(call_sign); call_sign =~ /[PpRrNnBbQqKk][a-h][1-8]/ ? true : false; end
@@ -73,6 +74,8 @@ module ConsoleChess
     def invalid_move; @printer.print("Not a valid move"); end
 
     def take_turn; @turn == "White" ? @turn = "Black" : @turn = "White"; end
+
+    def check; puts "Check!" if @board.check_for_check?; end
 
   end
 end

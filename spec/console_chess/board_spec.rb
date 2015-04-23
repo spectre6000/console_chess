@@ -82,5 +82,12 @@ module ConsoleChess
       ["Kg1", "Rf1", "kg8", "rf8"].each {|x| expect(board.piece_in_place?(x)).to eql(true)}
     end
 
+    it "recognizes check" do
+      ["Pd2 to _d4", "pc7 to _c5", "Pa2 to _a4"].each {|x| board.commit_move(x)}
+      expect(board.check_for_check).to eql(false)
+      board.commit_move("qd8 to _a5")
+      expect(board.check_for_check).to eql(true)
+    end
+
   end
 end

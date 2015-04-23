@@ -39,6 +39,8 @@ module ConsoleChess
       [target[1..2], "#{target[1..2]}C", "#{target[1..2]}EP"].any? { |x| @available_moves.include?(x)}
     end
 
+    def populate_available_moves; @available_moves = []; end
+
     def on_board?(position)
       position[0].ord > 96 && 
       position[0].ord < 105 && 

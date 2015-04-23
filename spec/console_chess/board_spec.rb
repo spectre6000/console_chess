@@ -61,14 +61,25 @@ module ConsoleChess
     end
 
     it "handles en passant capture" do
-      [["Pa2", "_a3", "Pa2 to _a3"], ["pb7", "_b5", "pb7 to _b5"],
-      ["Pa3", "_a4", "Pa3 to _a4"], ["pb5", "_b4", "pb5 to _b4"], 
-      ["Pa4", "_a5", "Pa4 to _a5"], ["pb4", "_b3", "pb4 to _b3"], 
-      ["Pc2", "_b4", "Pc2 to _b4"]].each do |x, y, z| 
-        board.commit_move(z)
-      end
+      ["Pa2 to _a3", "pb7 to _b5", "Pa3 to _a4", "pb5 to _b4", "Pa4 to _a5",
+      "pb4 to _b3", "Pc2 to _b4"].each {|x| board.commit_move(x) }
 
       ["p__", "Pb4", "_b3"].each {|x| expect(board.piece_in_place?(x)).to eql(true)}
+    end
+
+    it "handles long castling" do
+      ["Pb2 to _b4", "Pc2 to _c4", "Pd2 to _d4", "Nb1 to _a3", "Bc1 to _b2",
+      "Qd1 to _c2", "Ke1 to _c1", "pb7 to _b5", "pc7 to _c5", "pd7 to _d5", 
+      "nb8 to _a6", "bc8 to _b6", "qd8 to _c7", "ke8 to _c8"].each {|x| board.commit_move(x)}
+      
+      ["Kc1", "Rd1", "kc8", "rd8"].each {|x| expect(board.piece_in_place?(x)).to eql(true)}
+    end
+
+    it "handles short castling" do
+      ["Pg2 to _g4", "Pf2 to _f4", "Ng1 to _h3", "Bf1 to _g2", "Ke1 to _g1", 
+      "pg7 to _g5", "pf7 to _f5", "ng8 to _h6", "bf8 to _g7", "ke8 to _g8"].each {|x| board.commit_move(x)}
+      
+      ["Kg1", "Rf1", "kg8", "rf8"].each {|x| expect(board.piece_in_place?(x)).to eql(true)}
     end
 
   end

@@ -50,10 +50,39 @@ module ConsoleChess
       to = get_piece(target).position
       get_piece(start).populate_available_moves
   
-      if false#castling
+      if (get_piece(start).token == "k" || get_piece(start).token == "K") &&
+      get_piece(start).move_count == 0 && get_piece(start).available_moves.include?("#{to}C")
+        if start[0] == "k" 
+          if target[1] == "c" 
+            rook = "ra8" 
+            rook_pos = "d8"
+            space_pos = "a8"
+          else 
+            rook = "rh8"
+            rook_pos = "f8"
+            space_pos = "h8"
+          end
+        else
+          if target[1] == "c"
+            rook = "Ra1"
+            rook_pos = "d1"
+            space_pos = "a1"
+          else
+            rook = "Rh1"
+            rook_pos = "f1"
+            space_pos = "h1"
+          end
+        end
+        get_piece(start).commit_move(to)  #move king
+        get_piece(target).commit_move(from) #replace king with space
+        get_piece(rook).commit_move(rook_pos) #move rook
+        get_piece("_#{rook_pos}").commit_move(space_pos)       #replace rook with space
+
+
 
       elsif (get_piece(start).token == "p" || get_piece(start).token == "P") &&
       get_piece(start).move_count == 0 && get_piece(start).available_moves.include?("#{to}EP")
+
         start[0] == "p" ? ep_target = "#{to[0]}6" : ep_target = "#{to[0]}3"
         get_piece(start).commit_move(to)
         get_piece(target).commit_move(from)

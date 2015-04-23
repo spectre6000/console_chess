@@ -42,7 +42,7 @@ module ConsoleChess
       [1, 2, 3, 5, 6, -2, -3, -5, -6, -7].each do |x|
         board.game_board[x].instance_variable_set(:@token, "_")
       end
-      spec_array = [[wking, ["d1", "f1", "c1", "g1"]], [bking, ["d8", "f8", "c8", "g8"]]]
+      spec_array = [[wking, ["d1", "f1", "c1C", "g1C"]], [bking, ["d8", "f8", "c8C", "g8C"]]]
       
       spec_array.each do |x, y|
         x.populate_available_moves

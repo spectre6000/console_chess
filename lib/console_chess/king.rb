@@ -23,11 +23,11 @@ module ConsoleChess
 
     def castle
       if white?
-        @available_moves << "c1" if get_space("a1").unmoved? && empty?("b1", "c1", "d1")
-        @available_moves << "g1" if get_space("h1").unmoved? && empty?("g1", "f1")
+        @available_moves << "c1C" if get_space("a1").unmoved? && empty?("b1", "c1", "d1")
+        @available_moves << "g1C" if get_space("h1").unmoved? && empty?("g1", "f1")
       else
-        @available_moves << "c8" if get_space("a8").unmoved? && empty?("b8", "c8", "d8")
-        @available_moves << "g8" if get_space("h8").unmoved? && empty?("g8", "f8")
+        @available_moves << "c8C" if get_space("a8").unmoved? && empty?("b8", "c8", "d8")
+        @available_moves << "g8C" if get_space("h8").unmoved? && empty?("g8", "f8")
       end
     end
 

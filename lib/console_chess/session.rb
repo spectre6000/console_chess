@@ -40,6 +40,7 @@ module ConsoleChess
       target = move.split(" ")[2]
       
       if valid_entry?(move, start, target) && 
+        correct_player?(start) &&
         @board.piece_in_place?(start) && 
         @board.piece_in_place?(target) && 
         @board.legal_move?(start, target)
@@ -57,6 +58,10 @@ module ConsoleChess
       else
         false
       end
+    end
+
+    def correct_player?(start)
+      @turn == "White" && start[0].upcase == start[0] ? true : false
     end
 
     def valid_start_call_sign?(call_sign); call_sign =~ /[PpRrNnBbQqKk][a-h][1-8]/ ? true : false; end

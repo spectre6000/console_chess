@@ -57,6 +57,10 @@ module ConsoleChess
       spec_array.each {|x| expect(session.take_turn).to eql(x)}
     end
 
+    it "makes sure players can only move their own pieces" do
+      [["ph7", false], ["Pa7", true]].each { |x, y| expect(session.correct_player?(x)).to eql(y)}
+    end
+
     it "prompts a user for a move" do
       read("Pa2 to _a3")
       piece_in_place?

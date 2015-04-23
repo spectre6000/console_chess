@@ -6,7 +6,6 @@ module ConsoleChess
     def initialize
       @game_board
       new_board
-      @captured_pieces
     end
 
     def new_board
@@ -23,6 +22,10 @@ module ConsoleChess
       row_1 = primary_pieces.map { |piece, column| piece.new(column, "1", "White", self)}
       
       @game_board = [row_8, row_7, row_6, row_5, row_4, row_3, row_2, row_1].flatten
+    end
+
+    def load_board(board)
+      @game_board = board
     end
 
     def print_board
@@ -46,9 +49,9 @@ module ConsoleChess
     end
 
     def winner?
-      #this will need logic to determine whether or not anyone has won
-      # true
-      false
+      winner = false
+      find_kings.each { |x| x == "__" ? winner = true : winner = false}
+      winner 
     end
 
     def piece_in_place?(piece); @game_board.any? {|space| space.call_sign == piece} ? true : false; end

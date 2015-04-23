@@ -14,6 +14,8 @@ require "console_chess/king"
 require "console_chess/pawn"
 require "console_chess/space"
 
+require "yaml"
+
 
 module ConsoleChess
   

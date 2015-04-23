@@ -11,7 +11,7 @@ module ConsoleChess
     def play
       welcome
       loop do
-        check?
+        check
         print_board
         move = get_move(@turn)
         @board.commit_move(move)
@@ -27,6 +27,14 @@ module ConsoleChess
     def get_move(turn)
       print_turn
       move = @reader.read.chomp
+      if move == "save"
+        save_game
+      elsif move == "load"
+        load_game
+        print_board
+        print_turn
+        move = @reader.read.chomp
+      end
       until valid_move?(move)
         invalid_move
         move = @reader.read.chomp
@@ -75,7 +83,11 @@ module ConsoleChess
 
     def take_turn; @turn == "White" ? @turn = "Black" : @turn = "White"; end
 
-    def check; puts "Check!" if @board.check_for_check?; end
+    def check; puts "Check!" if @board.check_for_check == true; end
+
+    def save_game; File.open("saved_game.txt", "w"){ |x| x.puts YAML::dump(@board)}; exit; end
+
+    def load_game; File.open("saved_game.txt", "r") {|x| @board = YAML::load(x)}; end
 
   end
 end

@@ -1,0 +1,740 @@
+--- &1 !ruby/object:ConsoleChess::Board
+game_board:
+- !ruby/object:ConsoleChess::Rook
+  column: a
+  row: '8'
+  color: Black
+  board: *1
+  token: r
+  position: a8
+  call_sign: ra8
+  available_moves:
+  - a7
+  - a6
+  move_count: 0
+- !ruby/object:ConsoleChess::Knight
+  column: b
+  row: '8'
+  color: Black
+  board: *1
+  token: n
+  position: b8
+  call_sign: nb8
+  available_moves:
+  - d7
+  - a6
+  - c6
+  move_count: 0
+- !ruby/object:ConsoleChess::Bishop
+  column: c
+  row: '8'
+  color: Black
+  board: *1
+  token: b
+  position: c8
+  call_sign: bc8
+  available_moves:
+  - b7
+  - a6
+  - d7
+  - e6
+  move_count: 0
+- !ruby/object:ConsoleChess::Queen
+  column: d
+  row: '8'
+  color: Black
+  board: *1
+  token: q
+  position: d8
+  call_sign: qd8
+  available_moves:
+  - c7
+  - b6
+  - e7
+  - f6
+  - d7
+  - d6
+  move_count: 0
+- !ruby/object:ConsoleChess::King
+  column: e
+  row: '8'
+  color: Black
+  board: *1
+  token: k
+  position: e8
+  call_sign: ke8
+  available_moves:
+  - d7
+  - e7
+  - f7
+  move_count: 0
+- !ruby/object:ConsoleChess::Bishop
+  column: f
+  row: '8'
+  color: Black
+  board: *1
+  token: b
+  position: f8
+  call_sign: bf8
+  available_moves:
+  - e7
+  - d6
+  - g7
+  - h6
+  move_count: 0
+- !ruby/object:ConsoleChess::Knight
+  column: g
+  row: '8'
+  color: Black
+  board: *1
+  token: n
+  position: g8
+  call_sign: ng8
+  available_moves:
+  - e7
+  - f6
+  - h6
+  move_count: 0
+- !ruby/object:ConsoleChess::Rook
+  column: h
+  row: '8'
+  color: Black
+  board: *1
+  token: r
+  position: h8
+  call_sign: rh8
+  available_moves:
+  - h7
+  - h6
+  move_count: 0
+- !ruby/object:ConsoleChess::Pawn
+  column: a
+  row: '5'
+  color: Black
+  board: *1
+  token: p
+  position: a5
+  call_sign: pa5
+  available_moves:
+  - a4
+  - b4
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: b
+  row: '5'
+  color: Black
+  board: *1
+  token: p
+  position: b5
+  call_sign: pb5
+  available_moves:
+  - b4
+  - a4
+  - c4
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: c
+  row: '5'
+  color: Black
+  board: *1
+  token: p
+  position: c5
+  call_sign: pc5
+  available_moves:
+  - c4
+  - b4
+  - d4
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: d
+  row: '5'
+  color: Black
+  board: *1
+  token: p
+  position: d5
+  call_sign: pd5
+  available_moves:
+  - d4
+  - c4
+  - e4
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: e
+  row: '5'
+  color: Black
+  board: *1
+  token: p
+  position: e5
+  call_sign: pe5
+  available_moves:
+  - e4
+  - d4
+  - f4
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: f
+  row: '5'
+  color: Black
+  board: *1
+  token: p
+  position: f5
+  call_sign: pf5
+  available_moves:
+  - f4
+  - e4
+  - g4
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: g
+  row: '5'
+  color: Black
+  board: *1
+  token: p
+  position: g5
+  call_sign: pg5
+  available_moves:
+  - g4
+  - f4
+  - h4
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: h
+  row: '5'
+  color: Black
+  board: *1
+  token: p
+  position: h5
+  call_sign: ph5
+  available_moves:
+  - h4
+  - g4
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: a
+  row: '6'
+  color: _
+  board: *1
+  token: _
+  position: a6
+  call_sign: _a6
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: b
+  row: '6'
+  color: _
+  board: *1
+  token: _
+  position: b6
+  call_sign: _b6
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: c
+  row: '6'
+  color: _
+  board: *1
+  token: _
+  position: c6
+  call_sign: _c6
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: d
+  row: '6'
+  color: _
+  board: *1
+  token: _
+  position: d6
+  call_sign: _d6
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: e
+  row: '6'
+  color: _
+  board: *1
+  token: _
+  position: e6
+  call_sign: _e6
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: f
+  row: '6'
+  color: _
+  board: *1
+  token: _
+  position: f6
+  call_sign: _f6
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: g
+  row: '6'
+  color: _
+  board: *1
+  token: _
+  position: g6
+  call_sign: _g6
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: h
+  row: '6'
+  color: _
+  board: *1
+  token: _
+  position: h6
+  call_sign: _h6
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: a
+  row: '7'
+  color: _
+  board: *1
+  token: _
+  position: a7
+  call_sign: _a7
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: b
+  row: '7'
+  color: _
+  board: *1
+  token: _
+  position: b7
+  call_sign: _b7
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: c
+  row: '7'
+  color: _
+  board: *1
+  token: _
+  position: c7
+  call_sign: _c7
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: d
+  row: '7'
+  color: _
+  board: *1
+  token: _
+  position: d7
+  call_sign: _d7
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: e
+  row: '7'
+  color: _
+  board: *1
+  token: _
+  position: e7
+  call_sign: _e7
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: f
+  row: '7'
+  color: _
+  board: *1
+  token: _
+  position: f7
+  call_sign: _f7
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: g
+  row: '7'
+  color: _
+  board: *1
+  token: _
+  position: g7
+  call_sign: _g7
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: h
+  row: '7'
+  color: _
+  board: *1
+  token: _
+  position: h7
+  call_sign: _h7
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: a
+  row: '2'
+  color: _
+  board: *1
+  token: _
+  position: a2
+  call_sign: _a2
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: b
+  row: '2'
+  color: _
+  board: *1
+  token: _
+  position: b2
+  call_sign: _b2
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: c
+  row: '2'
+  color: _
+  board: *1
+  token: _
+  position: c2
+  call_sign: _c2
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: d
+  row: '2'
+  color: _
+  board: *1
+  token: _
+  position: d2
+  call_sign: _d2
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: e
+  row: '2'
+  color: _
+  board: *1
+  token: _
+  position: e2
+  call_sign: _e2
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: f
+  row: '2'
+  color: _
+  board: *1
+  token: _
+  position: f2
+  call_sign: _f2
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: g
+  row: '2'
+  color: _
+  board: *1
+  token: _
+  position: g2
+  call_sign: _g2
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: h
+  row: '2'
+  color: _
+  board: *1
+  token: _
+  position: h2
+  call_sign: _h2
+  available_moves: []
+  move_count: 1
+- !ruby/object:ConsoleChess::Space
+  column: a
+  row: '3'
+  color: _
+  board: *1
+  token: _
+  position: a3
+  call_sign: _a3
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: b
+  row: '3'
+  color: _
+  board: *1
+  token: _
+  position: b3
+  call_sign: _b3
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: c
+  row: '3'
+  color: _
+  board: *1
+  token: _
+  position: c3
+  call_sign: _c3
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: d
+  row: '3'
+  color: _
+  board: *1
+  token: _
+  position: d3
+  call_sign: _d3
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: e
+  row: '3'
+  color: _
+  board: *1
+  token: _
+  position: e3
+  call_sign: _e3
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: f
+  row: '3'
+  color: _
+  board: *1
+  token: _
+  position: f3
+  call_sign: _f3
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: g
+  row: '3'
+  color: _
+  board: *1
+  token: _
+  position: g3
+  call_sign: _g3
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Space
+  column: h
+  row: '3'
+  color: _
+  board: *1
+  token: _
+  position: h3
+  call_sign: _h3
+  available_moves: []
+  move_count: 0
+- !ruby/object:ConsoleChess::Pawn
+  column: a
+  row: '4'
+  color: White
+  board: *1
+  token: P
+  position: a4
+  call_sign: Pa4
+  available_moves:
+  - a5
+  - b5
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: b
+  row: '4'
+  color: White
+  board: *1
+  token: P
+  position: b4
+  call_sign: Pb4
+  available_moves:
+  - b5
+  - a5
+  - c5
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: c
+  row: '4'
+  color: White
+  board: *1
+  token: P
+  position: c4
+  call_sign: Pc4
+  available_moves:
+  - c5
+  - b5
+  - d5
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: d
+  row: '4'
+  color: White
+  board: *1
+  token: P
+  position: d4
+  call_sign: Pd4
+  available_moves:
+  - d5
+  - c5
+  - e5
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: e
+  row: '4'
+  color: White
+  board: *1
+  token: P
+  position: e4
+  call_sign: Pe4
+  available_moves:
+  - e5
+  - d5
+  - f5
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: f
+  row: '4'
+  color: White
+  board: *1
+  token: P
+  position: f4
+  call_sign: Pf4
+  available_moves:
+  - f5
+  - e5
+  - g5
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: g
+  row: '4'
+  color: White
+  board: *1
+  token: P
+  position: g4
+  call_sign: Pg4
+  available_moves:
+  - g5
+  - f5
+  - h5
+  move_count: 1
+- !ruby/object:ConsoleChess::Pawn
+  column: h
+  row: '4'
+  color: White
+  board: *1
+  token: P
+  position: h4
+  call_sign: Ph4
+  available_moves:
+  - h5
+  - g5
+  move_count: 1
+- !ruby/object:ConsoleChess::Rook
+  column: a
+  row: '1'
+  color: White
+  board: *1
+  token: R
+  position: a1
+  call_sign: Ra1
+  available_moves:
+  - a2
+  - a3
+  move_count: 0
+- !ruby/object:ConsoleChess::Knight
+  column: b
+  row: '1'
+  color: White
+  board: *1
+  token: N
+  position: b1
+  call_sign: Nb1
+  available_moves:
+  - d2
+  - a3
+  - c3
+  move_count: 0
+- !ruby/object:ConsoleChess::Bishop
+  column: c
+  row: '1'
+  color: White
+  board: *1
+  token: B
+  position: c1
+  call_sign: Bc1
+  available_moves:
+  - b2
+  - a3
+  - d2
+  - e3
+  move_count: 0
+- !ruby/object:ConsoleChess::Queen
+  column: d
+  row: '1'
+  color: White
+  board: *1
+  token: Q
+  position: d1
+  call_sign: Qd1
+  available_moves:
+  - c2
+  - b3
+  - e2
+  - f3
+  - d2
+  - d3
+  move_count: 0
+- !ruby/object:ConsoleChess::King
+  column: e
+  row: '1'
+  color: White
+  board: *1
+  token: K
+  position: e1
+  call_sign: Ke1
+  available_moves:
+  - d2
+  - e2
+  - f2
+  move_count: 0
+- !ruby/object:ConsoleChess::Bishop
+  column: f
+  row: '1'
+  color: White
+  board: *1
+  token: B
+  position: f1
+  call_sign: Bf1
+  available_moves:
+  - e2
+  - d3
+  - g2
+  - h3
+  move_count: 0
+- !ruby/object:ConsoleChess::Knight
+  column: g
+  row: '1'
+  color: White
+  board: *1
+  token: N
+  position: g1
+  call_sign: Ng1
+  available_moves:
+  - e2
+  - f3
+  - h3
+  move_count: 0
+- !ruby/object:ConsoleChess::Rook
+  column: h
+  row: '1'
+  color: White
+  board: *1
+  token: R
+  position: h1
+  call_sign: Rh1
+  available_moves:
+  - h2
+  - h3
+  move_count: 0

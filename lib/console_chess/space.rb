@@ -3,7 +3,7 @@ module ConsoleChess
 
     attr_reader :token, :position, :call_sign, :available_moves, :move_count
 
-    def initialize(column, row, color, board)
+    def initialize(column, row, color, board, move_count = 0)
       @column = column
       @row = row
       @color = color
@@ -15,7 +15,7 @@ module ConsoleChess
       @call_sign = "#{@token}#{@position}"
 
       @available_moves = []
-      @move_count = 0
+      @move_count = move_count
     end
 
     def set_token; @token = "_"; end

@@ -5,10 +5,6 @@ module ConsoleChess
     let (:fake_printer) {instance_double(Printer, :print => true)}
     let (:board) {Board.new}
 
-    # it "keeps the game going" do
-    #   expect(board.winner?).to eql(true)
-    # end
-
     it "prints the board" do
       expect(board.print_board).to eq("   a b c d e f g h\n8 |r|n|b|q|k|b|n|r| 8\n7 |p|p|p|p|p|p|p|p| 7\n6 |_|_|_|_|_|_|_|_| 6\n5 |_|_|_|_|_|_|_|_| 5\n4 |_|_|_|_|_|_|_|_| 4\n3 |_|_|_|_|_|_|_|_| 3\n2 |P|P|P|P|P|P|P|P| 2\n1 |R|N|B|Q|K|B|N|R| 1\n   a b c d e f g h")
     end
@@ -87,6 +83,13 @@ module ConsoleChess
       expect(board.check_for_check).to eql(false)
       board.commit_move("qd8 to _a5")
       expect(board.check_for_check).to eql(true)
+    end
+
+    it "ends the game when a king is captured" do
+      ["Pd2 to _d4", "pc7 to _c5", "Pa2 to _a4", "qd8 to _a5", "Pe2 to _e4"].each {|x| board.commit_move(x)}
+      expect(board.winner?).to eql(false)
+      board.commit_move("qa5 to Ke1")
+      expect(board.winner?).to eql(true)
     end
 
   end

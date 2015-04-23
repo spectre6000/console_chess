@@ -17,8 +17,10 @@ module ConsoleChess
     def commit_move; allow(fake_board).to receive(:commit_move).and_return(true); end
     def play; session.play; end
     def get_move(turn); session.get_move(turn); end
+    def check?; allow(fake_board).to receive(:check_for_check).and_return(false); end
 
     it "greets user" do
+      check?
       print_board
       piece_in_place?
       legal_move?
@@ -33,6 +35,7 @@ module ConsoleChess
 
     it "prints the board" do
       print("Welcome to ConsoleChess!")
+      check?
       print_board
       piece_in_place?
       legal_move?

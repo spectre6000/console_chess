@@ -65,7 +65,6 @@ module ConsoleChess
       ["Pa3", "_a4", "Pa3 to _a4"], ["pb5", "_b4", "pb5 to _b4"], 
       ["Pa4", "_a5", "Pa4 to _a5"], ["pb4", "_b3", "pb4 to _b3"], 
       ["Pc2", "_b4", "Pc2 to _b4"]].each do |x, y, z| 
-        board.legal_move?(x, y)
         board.commit_move(z)
       end
 

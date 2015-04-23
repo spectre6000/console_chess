@@ -14,6 +14,7 @@ module ConsoleChess
     def legal_move?; allow(fake_board).to receive(:legal_move?).and_return(true); end
     def winner?; allow(fake_board).to receive(:winner?).and_return(true); end
     def read(*messages); allow(fake_reader).to receive(:read).and_return(*messages); end
+    def commit_move; allow(fake_board).to receive(:commit_move).and_return(true); end
     def play; session.play; end
     def get_move(turn); session.get_move(turn); end
 
@@ -23,6 +24,7 @@ module ConsoleChess
       legal_move?
       winner?
       read("Pa2 to _a3")
+      commit_move
 
       play
 
@@ -36,6 +38,8 @@ module ConsoleChess
       legal_move?
       winner?
       read("Pa2 to Pa3")
+      commit_move
+
       play
 
       expect(fake_board).to have_received(:print_board)

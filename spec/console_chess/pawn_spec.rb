@@ -3,9 +3,9 @@ require "spec_helper.rb"
 module ConsoleChess
   describe Pawn do
     pieces_setup_array = [[:wpawn, "h", "2", "White"], [:bpawn, "a", "7", "Black"]]
-
-    let (:board) {Board.new}
-    pieces_setup_array.each {|x, y, z, a| let (x) {Pawn.new(y, z, a, board)}}
+    
+    let (:fake_board) {Board.new}
+    pieces_setup_array.each {|x, y, z, a| let (x) {Pawn.new(y, z, a, fake_board)}}
 
     it "initializes with the correct 'color'" do
       spec_array = [[wpawn, "P"], [bpawn, "p"]]
@@ -33,15 +33,6 @@ module ConsoleChess
       [bpawn, "_a6", true], [bpawn, "_a5", true], [bpawn, "_a4", false]]
 
       spec_array.each {|x, y, z| expect(x.available_move?(y)).to eql(z)}
-    end
-
-    it "recognizes a potential capture including en passant" do
-      setup_array = [[-18, "p"], [-26, "p"], [17, "P"], [25, "P"]]
-      setup_array.each {|x, y| board.game_board[x].instance_variable_set(:@token, y)}
-
-      spec_array = [[wpawn, "pg3"], [wpawn, "pg4"], [bpawn, "Pb6"], [bpawn, "Pb5"]]
-      
-      spec_array.each {|x, y| expect(x.available_move?(y)).to eql(true)}
     end
 
   end

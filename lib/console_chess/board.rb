@@ -48,6 +48,7 @@ module ConsoleChess
       target = move.split(" ")[2]
       from = get_piece(start).position
       to = get_piece(target).position
+      get_piece(start).populate_available_moves
   
       if false#castling
 
@@ -58,13 +59,13 @@ module ConsoleChess
         get_piece(target).commit_move(from)
         get_piece(get_piece_in_position(ep_target).call_sign).commit_move("__")
         @game_board <<  ConsoleChess::Space.new(ep_target[0], ep_target[1], "_", self)
-      elsif target[0] == "_" #move to open space
-        get_piece(start).commit_move(to)
-        get_piece(target).commit_move(from)
-      else #simple capture
+      elsif target[0] != "_"
         get_piece(start).commit_move(to)
         get_piece(target).commit_move("__")
         @game_board << ConsoleChess::Space.new(from[0], from[1], "_", self)
+      elsif target[0] == "_"
+        get_piece(start).commit_move(to)
+        get_piece(target).commit_move(from)
       end
     end
 
